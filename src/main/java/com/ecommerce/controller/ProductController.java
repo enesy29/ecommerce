@@ -2,7 +2,7 @@ package com.ecommerce.controller;
 
 import com.ecommerce.model.Product;
 import com.ecommerce.service.ProductService;
-import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,11 +29,19 @@ public class ProductController {
         model.setViewName("dashboard");
         return model;
     }
-    @RequestMapping(value = {"/getProduct"}, method = RequestMethod.GET)
+
+    /*@RequestMapping(value = {"/getProduct/{name}"}, method = RequestMethod.GET)
     public ModelAndView listProducts(@ModelAttribute("product") String name, ModelAndView modelAndView) {
         List<Product> product1 = productService.listProduct(name);
         modelAndView.setViewName("product");
         return modelAndView;
+    }*/
+
+    @RequestMapping(value = {"/getProduct"}, method = RequestMethod.GET)
+    public List<Product> viewProducts(String productName){
+        List<Product> productList = productService.getAllProduct();
+        System.out.println("product list : " + productList);
+        return productList;
     }
 
     @RequestMapping(value = {"/updateProduct"}, method = RequestMethod.PUT)
@@ -42,7 +50,7 @@ public class ProductController {
         modelAndView.setViewName("product");
         return modelAndView;
     }
-    @RequestMapping(value = {"/deletedProduct"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/deletedProduct/{id}"}, method = RequestMethod.DELETE)
     public ModelAndView deleteProducts(@ModelAttribute("product") Long id, ModelAndView modelAndView) {
         productService.deleteProduct(id);
         modelAndView.setViewName("product");

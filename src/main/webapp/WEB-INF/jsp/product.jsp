@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.bind.annotation.ModelAttribute" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-${product}
+<b>${name}</b>
 </body>
 </html>
