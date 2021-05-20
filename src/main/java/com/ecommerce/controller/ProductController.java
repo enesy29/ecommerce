@@ -50,11 +50,12 @@ public class ProductController {
     @RequestMapping(value = {"/updateProduct"}, method = RequestMethod.PUT)
     public ModelAndView updateProducts(@ModelAttribute("product") Product product, ModelAndView modelAndView) {
         Product product1 = productService.updateProducts(product);
+        System.out.println("Güncellenmeden önce : " + product + " Güncellemeden sonra" + product1);
         modelAndView.setViewName("product");
         return modelAndView;
     }
     @RequestMapping(value = {"/deletedProduct/{productId}"}, method = RequestMethod.DELETE)
-    public ModelAndView deleteProducts(@ModelAttribute("product") @PathVariable("prodcutId") Long id, ModelAndView modelAndView) {
+    public ModelAndView deleteProducts(@ModelAttribute("product") @PathVariable("productId") Long id, ModelAndView modelAndView) {
         productService.deleteProduct(id);
         modelAndView.setViewName("product");
         return modelAndView;

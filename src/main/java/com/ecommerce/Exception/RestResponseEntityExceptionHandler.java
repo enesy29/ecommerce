@@ -17,7 +17,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         ErrorDescription bodyOfResponse = new ErrorDescription();
         bodyOfResponse.setMessage(ex.getMessage());
         bodyOfResponse.setCode(1200);
-        return new ResponseEntity<ErrorDescription>(bodyOfResponse,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ErrorDescription>(bodyOfResponse,HttpStatus.CONFLICT); //NOT_FOUND
     }
 
     @ExceptionHandler(value = { Exception.class})

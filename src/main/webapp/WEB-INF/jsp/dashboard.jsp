@@ -6,13 +6,12 @@
     <title>Dashboard Sayfası</title>
 </head>
 
-<div class="container">
-
+<div class="header">
+    <h1>E-Commerce</h1>
     <section class="jumbotron text-center">
         <div class="container">
-            <h1>Dashboard Burası kaardeşim </h1>
             <!--  ModelAndView objesinin içine isAdmin diye bir şey koyarsak bunu jsp sayhfasında kontrol edebiliriz.  !-->
-            <c:if test="${isAdmin == true}">
+            <c:if test="${isAdmin == true}isAdmin">
                 <a href="/addProduct">Prodcut ekle</a>
             </c:if>
             Kayıt olan kullancı ismi <b>${username}</b>

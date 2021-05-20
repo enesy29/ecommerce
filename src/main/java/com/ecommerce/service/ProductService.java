@@ -33,11 +33,11 @@ public class ProductService {
 
     public Product updateProducts(Product product) {
         Product updatedProduct = productRepository.save(product);
-        updatedProduct.setProductName(product.getProductName());
-        updatedProduct.setCategory(product.getCategory());
-        updatedProduct.setPrice(product.getPrice());
-        updatedProduct.setDescription(product.getDescription());
-        //updatedProduct = productRepository.save(updatedProduct);
+        product.setProductName(updatedProduct.getProductName());
+        product.setCategory(updatedProduct.getCategory());
+        product.setPrice(updatedProduct.getPrice());
+        product.setDescription(updatedProduct.getDescription());
+
         System.out.println("Product güncellendi : " + updatedProduct);
         return  updatedProduct;
     }
