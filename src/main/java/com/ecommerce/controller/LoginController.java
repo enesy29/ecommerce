@@ -25,13 +25,10 @@ public class LoginController {
         ModelAndView model = new ModelAndView();
         User userLogin = userService.login(user);
         String username = userLogin.getUsername();
-        if (null != userLogin){
+
             redirectAttributes.addFlashAttribute("username", username);
             model.setViewName("redirect:/dashboard");
             return model;
-        }
-        else
-            throw new UserNotFoundException();
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)

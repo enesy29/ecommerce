@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,9 @@ public class UserServiceImpl implements UserService {
 
         User findByUsername = userRepository.findByUsernameAndPassword(username, password);
 
-        if(findByUsername == null){
-            return null;
+        if (findByUsername == null){
+            throw new UserNotFoundException();
         }
-
         return findByUsername;
     }
 }

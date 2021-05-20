@@ -10,23 +10,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String productName;
     private String description;
     private BigDecimal price;
     private String category;
-
+ //ManyToOne
     public Product() {
         super();
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, String category) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-    }
 
     public Long getId() {
         return id;
@@ -36,12 +28,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getDescription() {
@@ -65,6 +57,25 @@ public class Product {
     }
 
     public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                '}';
+    }
+
+    public Product(Long id, String productName, String description, BigDecimal price, String category) {
+        this.id = id;
+        this.productName = productName;
+        this.description = description;
+        this.price = price;
         this.category = category;
     }
 }

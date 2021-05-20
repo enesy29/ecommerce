@@ -16,13 +16,6 @@ public class OrderService {
         // orderList.add(order);
 
         boolean admin = user.isAdmin();
-
-        if (admin) {
-
-        } else {
-
-        }
-
         userRepository.save(user);
     }
 

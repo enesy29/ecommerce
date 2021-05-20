@@ -2,9 +2,14 @@ package com.ecommerce.repository;
 
 import com.ecommerce.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProductRepository extends JpaRepository<Product , String> {
+import java.util.List;
 
-    Product findByCategoryAndId(String category,long id);
-    Product findByProductName(String productName);
+public interface ProductRepository extends JpaRepository<Product , Long > {
+
+    //Product findById(Long id);
+    List<Product> findByProductName(String productName);
+    //Product deleteById(Long id);
+    //Product updateProduct(Product product);
 }

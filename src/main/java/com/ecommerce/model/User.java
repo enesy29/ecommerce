@@ -14,17 +14,12 @@ public class User {
     private String name;
     private String surname;
     private String password;
+    private String email;
+    private boolean isAdmin = false; // istiyorsan bunu silebilirsin.
 
-    private boolean isAdmin; // istiyorsan bunu silebilirsin.
+    public User() {
 
-    public boolean isAdmin() {
-        return isAdmin;
     }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
     public Long getId() {
         return id;
     }
@@ -65,6 +60,22 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+//ManyToOne
     @Override
     public String toString() {
         return "User{" +
@@ -73,6 +84,18 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
+    }
+
+    public User(Long id, String username, String name, String surname, String password, String email, boolean isAdmin) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.email = email;
+        this.isAdmin = isAdmin;
     }
 }
