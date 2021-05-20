@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class ProductService {
 
@@ -42,9 +41,10 @@ public class ProductService {
         System.out.println("Product güncellendi : " + updatedProduct);
         return  updatedProduct;
     }
-    public List<Product> listProduct(String name) {
-        List<Product> listedProduct = productRepository.findByProductName(name);
-        return listedProduct ;
+    public Product listProduct(Long id) {
+        Product listedProduct = productRepository.findById(id).get();;
+        System.out.println("listed" + listedProduct);
+        return listedProduct;
     }
 
     public List<Product> getAllProduct() {

@@ -15,7 +15,7 @@ public class User {
     private String surname;
     private String password;
     private String email;
-    private boolean isAdmin = false; // istiyorsan bunu silebilirsin.
+    private boolean isAdmin = true; // istiyorsan bunu silebilirsin.
 
     public User() {
 

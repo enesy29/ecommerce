@@ -12,8 +12,8 @@
         <div class="container">
             <h1>Dashboard Burası kaardeşim </h1>
             <!--  ModelAndView objesinin içine isAdmin diye bir şey koyarsak bunu jsp sayhfasında kontrol edebiliriz.  !-->
-            <c:if test="isAdmin">
-                <a href="/productEkleme">Prodcut ekle</a>
+            <c:if test="${isAdmin == true}">
+                <a href="/addProduct">Prodcut ekle</a>
             </c:if>
             Kayıt olan kullancı ismi <b>${username}</b>
         </div>

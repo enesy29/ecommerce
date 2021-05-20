@@ -2,14 +2,17 @@ package com.ecommerce.controller;
 
 import com.ecommerce.model.Product;
 import com.ecommerce.service.ProductService;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -20,7 +23,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = {"/product"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/product"}, method = RequestMethod.POST , consumes = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView addProducts(@ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelAndView model = new ModelAndView();
         Product product1 = productService.addProduct(product);
@@ -50,10 +53,16 @@ public class ProductController {
         modelAndView.setViewName("product");
         return modelAndView;
     }
-    @RequestMapping(value = {"/deletedProduct/{id}"}, method = RequestMethod.DELETE)
-    public ModelAndView deleteProducts(@ModelAttribute("product") Long id, ModelAndView modelAndView) {
+    @RequestMapping(value = {"/deletedProduct/{productId}"}, method = RequestMethod.DELETE)
+    public ModelAndView deleteProducts(@ModelAttribute("product") @PathVariable("prodcutId") Long id, ModelAndView modelAndView) {
         productService.deleteProduct(id);
         modelAndView.setViewName("product");
         return modelAndView;
+    }
+    @RequestMapping(value = {"/product_detail/{productId}"}, method = RequestMethod.GET)
+    public Product productDetail(@PathVariable("productId") Long id){
+        Product productDetail = productService.listProduct(id);
+        System.out.println("product list : " + productDetail);
+        return productDetail;
     }
 }

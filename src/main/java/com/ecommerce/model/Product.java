@@ -1,5 +1,4 @@
 package com.ecommerce.model;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
