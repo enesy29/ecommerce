@@ -1,21 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="button" uri="http://www.springframework.org/tags/form" %>
 <%@include file="header/header.jsp" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Kullanıcı Profili</title>
+    <title>Admin Profili</title>
 </head>
 <body>
 <div>
     <section class="jumbotron text-center">
         <div class="container">
-            <!--  ModelAndView objesinin içine isAdmin diye bir şey koyarsak bunu jsp sayhfasında kontrol edebiliriz.  !-->
-            <c:if test="${isAdmin == true}">
-                <a href="/addProduct">Prodcut ekle</a>
-            </c:if>
-            Kayıt olan kullancı ismi <b>${username}</b>
+            Admin <b>${username}</b>
+            <div class="leftContainer">
+                <hr>
+                <a href="/adminDashboard/viewProduct/addProduct" class="btn btn-success btn-lg my-2">Ürün Ekle</a>
+                <hr>
+                <a href="/adminDashboard/viewProduct" class="btn btn-success btn-lg my-2">Ürün Görüntüle</a>
+                <hr>
+                <a href="/adminDashboard/viewProduct/deleteProduct" class="btn btn-success btn-lg my-2">Ürün Sil</a>
+                <hr>
+                <a href="/adminDashboard/viewProduct/updateProduct" class="btn btn-success btn-lg my-2">Ürün Güncelle</a>
+                <hr>
+            </div>
+
+
+
         </div>
+        <div class="mainContainer"></div>
     </section>
 </div>
 </body>

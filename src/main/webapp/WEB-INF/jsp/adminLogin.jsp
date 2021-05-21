@@ -7,7 +7,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Üye Giriş Sayfası</title>
+    <title>Admin Giriş Sayfası</title>
 </head>
 
 <div class="container mt-5">
@@ -21,11 +21,9 @@
         <hr>
         <form:input path="password" type="password" cssClass="form-control"  placeholder="Şifre" required="required"></form:input>
         <hr>
-        </form:form>
-        <p>Üye değilseniz lütfen Kayıt Ol butonuna tıklayarak kayıt sayfasına gidiniz ..</p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button name="submit" class="btn btn-success btn-lg my-2">Giriş Yap</button>
-        <a href="/register" class="btn btn-success btn-lg my-2">Kayıt Ol</a>
+        </form:form>
     </div>
 
 </html>

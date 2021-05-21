@@ -14,7 +14,6 @@ public class User {
     private String surname;
     private String password;
     private String email;
-    private boolean isAdmin = true; // istiyorsan bunu silebilirsin.
     //ManyToOne
     @OneToOne
     @JoinColumn(name = "BasketId")
@@ -71,13 +70,6 @@ public class User {
         this.email = email;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
 
     @Override
     public String toString() {
@@ -88,17 +80,15 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", isAdmin=" + isAdmin +
                 '}';
     }
 
-    public User(Long id, String username, String name, String surname, String password, String email, boolean isAdmin) {
+    public User(Long id, String username, String name, String surname, String password, String email) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.email = email;
-        this.isAdmin = isAdmin;
     }
 }

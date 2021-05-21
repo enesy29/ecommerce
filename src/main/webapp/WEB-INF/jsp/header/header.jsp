@@ -6,7 +6,7 @@
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="dashboard" class="nav-link text-uppercase font-weight-bold">Home<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item active"><a href="home" class="nav-link text-uppercase font-weight-bold">Home<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="login" class="nav-link text-uppercase font-weight-bold">Login</a></li>
                     <li class="nav-item"><a href="register" class="nav-link text-uppercase font-weight-bold">Sign Up</a></li>
                 </ul>
