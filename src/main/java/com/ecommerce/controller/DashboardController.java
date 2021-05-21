@@ -2,16 +2,12 @@ package com.ecommerce.controller;
 
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
-import com.ecommerce.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpSession;
 
 @RestController
 public class DashboardController {
@@ -25,8 +21,8 @@ public class DashboardController {
         return modelAndView;
     }
     @RequestMapping(value = {"/update"} , method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("user") User user){
-        userService.updateUser(user);
+    public String updateUser(@ModelAttribute("user") User user,Long id){
+        userService.updateUser(user,id);
         return "/update";
     }
 }

@@ -1,7 +1,6 @@
 package com.ecommerce.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -16,6 +15,10 @@ public class User {
     private String password;
     private String email;
     private boolean isAdmin = true; // istiyorsan bunu silebilirsin.
+    //ManyToOne
+    @OneToOne
+    @JoinColumn(name = "BasketId")
+    private Order order;
 
     public User() {
 
@@ -75,7 +78,7 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
-//ManyToOne
+
     @Override
     public String toString() {
         return "User{" +

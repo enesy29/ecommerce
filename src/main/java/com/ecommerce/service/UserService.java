@@ -1,12 +1,55 @@
 package com.ecommerce.service;
 
+import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.User;
+import com.ecommerce.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
+@Service
+public class UserService {
 
-    User saveUser(User user);
+    @Autowired
+    private UserRepository userRepository;
 
-    User login(User user);
+    public User saveUser(User user) {
 
-    User updateUser(User user);
+        System.out.println("Kaydedilecek kullancı :" + user);
+
+        User savedUser = userRepository.save(user);
+
+        System.out.println("Database'e yazıldıktan sonraki kullanıcı : " + savedUser);
+
+        return savedUser;
+    }
+
+    public User login(User user) {
+
+        String username = user.getUsername();
+        String password = user.getPassword();
+
+        User findByUsername = userRepository.findByUsernameAndPassword(username, password);
+
+        if (findByUsername == null){
+            throw new UserNotFoundException();
+        }
+        return findByUsername;
+    }
+    public User updateUser(User user,Long id){
+        User updatedUser = userRepository.findById(id).get();
+        updatedUser.setName(user.getName());
+        updatedUser.setSurname(user.getSurname());
+        updatedUser.setUsername(user.getUsername());
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setPassword(user.getPassword());
+        return userRepository.save(updatedUser);
+    }
+    public User getUser(Long id){
+        User getUser = userRepository.findById(id).get();
+        return getUser;
+    }
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

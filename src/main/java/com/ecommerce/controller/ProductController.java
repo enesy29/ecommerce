@@ -41,7 +41,7 @@ public class ProductController {
     }*/
 
     @RequestMapping(value = {"/getProduct"}, method = RequestMethod.GET)
-    public List<Product> viewProducts(String productName){
+    public List<Product> viewProducts(@ModelAttribute("product") String productName){
         List<Product> productList = productService.getAllProduct();
         System.out.println("product list : " + productList);
         return productList;
@@ -61,7 +61,7 @@ public class ProductController {
         return modelAndView;
     }
     @RequestMapping(value = {"/product_detail/{productId}"}, method = RequestMethod.GET)
-    public Product productDetail(@PathVariable("productId") Long id){
+    public Product productDetail(@ModelAttribute("product") @PathVariable("productId") Long id){
         Product productDetail = productService.listProduct(id);
         System.out.println("product list : " + productDetail);
         return productDetail;
