@@ -22,9 +22,7 @@
         <form:input path="surname" cssClass="form-control"  placeholder="Soyisim" required="required"></form:input>
         <hr>
         <form:input path="username" cssClass="form-control"  placeholder="Kullanıcı Adı" required="required"></form:input>
-        <c:if test="${alreadyExistsUser ne null}">
             <span class="form-text text-center text-danger">${alreadyExistsUser}</span>
-        </c:if>
         <form:errors path="username" cssClass="form-text text-danger"></form:errors>
         <hr>
         <form:input path="email" type = "email" cssClass="form-control"  placeholder="E Mail" required="required"></form:input>

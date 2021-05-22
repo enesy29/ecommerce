@@ -4,11 +4,9 @@ import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,14 +19,23 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public ModelAndView userLogin(@ModelAttribute("login") User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UserNotFoundException {
-        ModelAndView model = new ModelAndView();
+    public ModelAndView userLogin(@ModelAttribute("login") User user,RedirectAttributes redirectAttributes,@RequestParam(value = "error", required = false) String error,
+                                  @RequestParam(value = "logout", required = false) String logout, Model model){
+        ModelAndView modelAndView = new ModelAndView();
         User userLogin = userService.login(user);
         String username = userLogin.getUsername();
 
-            redirectAttributes.addFlashAttribute("username", username);
-            model.setViewName("redirect:/dashboard");
-            return model;
+        if(error != null){
+            model.addAttribute("error","Kullanıcı adı veya şifre hatalı !");
+        }
+
+        if (logout != null){
+            model.addAttribute("msg","Çıkış işlemi başarılı");
+        }
+
+        redirectAttributes.addFlashAttribute("username", username);
+        modelAndView.setViewName("redirect:/dashboard");
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)

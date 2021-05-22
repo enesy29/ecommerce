@@ -8,21 +8,18 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-public class HelloController {
+public class HomeController {
 
     private final ProductService productService;
 
-    public HelloController(ProductService productService) {
+    public HomeController(ProductService productService) {
         this.productService = productService;
     }
 
-    @RequestMapping(value = {"/", "/index"})
-    public ModelAndView indexPage(Model model, HttpServletRequest request) {
-        request.setAttribute("product",productService.getAllProduct());
-        request.setAttribute("mode", "ALL_PRODUCTS");
-        //model.addAttribute("product",productService.getAllProduct());
+    @RequestMapping(value = {"/", "/home"})
+    public ModelAndView indexPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 

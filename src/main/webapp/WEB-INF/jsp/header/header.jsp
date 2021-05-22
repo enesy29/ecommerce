@@ -1,16 +1,65 @@
-<!-- Navbar-->
-<header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">E Commercial Web Site</a>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="home" class="nav-link text-uppercase font-weight-bold">Home<span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="login" class="nav-link text-uppercase font-weight-bold">Login</a></li>
-                    <li class="nav-item"><a href="register" class="nav-link text-uppercase font-weight-bold">Sign Up</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+<html>
+<head>
+
+    <title>E Ticaret Sitesi</title>
+
+    <!-- Angular JS -->
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+
+    </script>
+
+    <%--Jquery--%>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <%--Data Table--%>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link
+            href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"
+            rel="stylesheet">
+
+
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<div class="header">
+    <div class="rightContainer">
+        <a href="<c:url value="/" /> ">
+            <span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
+        <a href="<c:url value="/product/productList/all" />">Products</a>
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <a>Hello, ${pageContext.request.userPrincipal.name}</a>
+            <c:if
+                    test="${pageContext.request.userPrincipal.name != 'admin'}">
+                <a href="<c:url value="/customer/cart" />">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Cart</a>
+            </c:if>
+            <c:if
+                    test="${pageContext.request.userPrincipal.name  == 'admin'}">
+                <a href="<c:url value="/admin" />">
+                    <span class="glyphicon glyphicon-user"></span>&nbsp; Admin</a>
+            </c:if>
+            <a href="<c:url value="/j_spring_security_logout" />">
+                <span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a>
+        </c:if>
+        <c:if test="${pageContext.request.userPrincipal.name  == null}">
+            <a href="<c:url value="/login/" />">
+                <span class="glyphicon glyphicon-log-in"></span>&nbsp; Log In</a>
+            <a href="<c:url value="/register" />">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp; Sign Up</a>
+        </c:if>
+    </div>
+</div>
+
+<br/><br/><br/>

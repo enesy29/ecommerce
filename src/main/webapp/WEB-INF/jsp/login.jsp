@@ -15,17 +15,20 @@
     <form:form modelAttribute="login" cssClass="form-login" method="post">
     <h2 class="form-signin-heading text-center">Giriş Yap</h2>
     <hr/>
+        <c:if test="${not empty msg}">
+        <div class="msg">${msg}</div>
+        </c:if>
     <div class="form-group" aria-setsize="5">
-
+        <c:if test="${not empty error}">
+            <div class="error" style="color: darkred">${error}</div>
+        </c:if>
         <form:input path="username" cssClass="form-control"  placeholder="Kullanıcı Adı" required="required"></form:input>
         <hr>
         <form:input path="password" type="password" cssClass="form-control"  placeholder="Şifre" required="required"></form:input>
         <hr>
         </form:form>
-        <p>Üye değilseniz lütfen Kayıt Ol butonuna tıklayarak kayıt sayfasına gidiniz ..</p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button name="submit" class="btn btn-success btn-lg my-2">Giriş Yap</button>
-        <a href="/register" class="btn btn-success btn-lg my-2">Kayıt Ol</a>
     </div>
 
 </html>

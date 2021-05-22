@@ -25,7 +25,7 @@ public class RegisterController {
     private UserService userService;
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
-    public ModelAndView createUser(@ModelAttribute("createUser")User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) throws ServletException {
+    public ModelAndView createUser(@Valid @ModelAttribute("createUser")User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes){
         ModelAndView model = new ModelAndView();
 
         if (bindingResult.hasErrors()) {

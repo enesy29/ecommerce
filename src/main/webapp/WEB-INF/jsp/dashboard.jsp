@@ -10,10 +10,6 @@
 <div>
     <section class="jumbotron text-center">
         <div class="container">
-            <!--  ModelAndView objesinin içine isAdmin diye bir şey koyarsak bunu jsp sayhfasında kontrol edebiliriz.  !-->
-            <c:if test="${isAdmin == true}">
-                <a href="/addProduct">Prodcut ekle</a>
-            </c:if>
             Kayıt olan kullancı ismi <b>${username}</b>
         </div>
     </section>
