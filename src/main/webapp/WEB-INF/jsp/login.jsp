@@ -19,8 +19,10 @@
         <div class="msg">${msg}</div>
         </c:if>
     <div class="form-group" aria-setsize="5">
-        <c:if test="${not empty error}">
-            <div class="error" style="color: darkred">${error}</div>
+        <c:if test="${not empty passwordOrUsernameError}">
+            <div class="alert alert-danger">
+                <p class="text-center">${passwordOrUsernameError}</p>
+            </div>
         </c:if>
         <form:input path="username" cssClass="form-control"  placeholder="Kullanıcı Adı" required="required"></form:input>
         <hr>

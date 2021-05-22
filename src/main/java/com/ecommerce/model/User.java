@@ -17,7 +17,7 @@ public class User {
     //ManyToOne
     @OneToOne
     @JoinColumn(name = "BasketId")
-    private Order order;
+    private Order order; // List<Orders> FIXME ONE TO MANY
 
     public User() {
 

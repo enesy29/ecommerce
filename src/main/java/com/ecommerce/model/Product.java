@@ -1,4 +1,5 @@
 package com.ecommerce.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -21,16 +22,26 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String category;
-    @Transient
-    private MultipartFile productImage;
+
+    private String imageURL;
+
     //ManyToOne
-    @OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
-    private List<Order> orderList;
+    private List<Order> orderList; // FIXME DELETE
 
     public Product() {
         super();
+    }
+
+    public Product(Long productId, String productName, String description, BigDecimal price, String category, List<Order> orderList) {
+        this.productId = productId;
+        this.productName = productName;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.orderList = orderList;
     }
 
     public Long getProductId() {
@@ -73,20 +84,21 @@ public class Product {
         this.category = category;
     }
 
-    public MultipartFile getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(MultipartFile productImage) {
-        this.productImage = productImage;
-    }
-
     public List<Order> getOrderList() {
         return orderList;
     }
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override
@@ -97,18 +109,8 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
-                ", productImage=" + productImage +
+                ", imageURL='" + imageURL + '\'' +
                 ", orderList=" + orderList +
                 '}';
-    }
-
-    public Product(Long productId, String productName, String description, BigDecimal price, String category, MultipartFile productImage, List<Order> orderList) {
-        this.productId = productId;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.productImage = productImage;
-        this.orderList = orderList;
     }
 }

@@ -1,16 +1,15 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class LoginController {
@@ -19,28 +18,33 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public ModelAndView userLogin(@ModelAttribute("login") User user,RedirectAttributes redirectAttributes,@RequestParam(value = "error", required = false) String error,
-                                  @RequestParam(value = "logout", required = false) String logout, Model model){
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView userLogin(@ModelAttribute("login") User user, RedirectAttributes redirectAttributes, HttpSession httpSession, ModelAndView model) {
+
         User userLogin = userService.login(user);
-        String username = userLogin.getUsername();
 
-        if(error != null){
-            model.addAttribute("error","Kullanıcı adı veya şifre hatalı !");
+        if(userLogin == null){
+            model.addObject("passwordOrUsernameError", "Kullanıcı adı ya da şifreniz hatalıdır.");
+            model.setViewName("login");
+            return model;
         }
 
-        if (logout != null){
-            model.addAttribute("msg","Çıkış işlemi başarılı");
-        }
+        httpSession.setAttribute("userSession", userLogin);
 
-        redirectAttributes.addFlashAttribute("username", username);
-        modelAndView.setViewName("redirect:/dashboard");
-        return modelAndView;
+        redirectAttributes.addFlashAttribute("username", userLogin.getUsername());
+        model.setViewName("redirect:/dashboard");
+        return model;
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public ModelAndView showLogin(@ModelAttribute("login") User user, ModelAndView modelAndView) {
-        modelAndView.setViewName("login");
+    public ModelAndView showLogin(@ModelAttribute("login") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes) {
+        User userSession = (User) httpSession.getAttribute("userSession");
+        if (userSession != null) {
+            redirectAttributes.addFlashAttribute("username", userSession.getUsername());
+            modelAndView.setViewName("redirect:/dashboard");
+        } else {
+            modelAndView.setViewName("login");
+        }
+
         return modelAndView;
     }
 

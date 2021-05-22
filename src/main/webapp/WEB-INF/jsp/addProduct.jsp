@@ -35,9 +35,10 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="productImage">Fotoğraf</label>
-                <form:input id="productImage" path="productImage" type="file" class="form:input-large" />
+                <label for="category">Ürün Resmi</label>
+                <form:input path="imageURL" id="imageURL" class="form-Control"/>
             </div>
+
             <br><br>
             <input type="submit" value="Submit" class="btn btn-default">
             <a href="<c:url value="/admin/productInventory/" />" class="btn btn-default">Cancel</a>

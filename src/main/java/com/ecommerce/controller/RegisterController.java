@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class RegisterController {
     private UserService userService;
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
-    public ModelAndView createUser(@Valid @ModelAttribute("createUser")User user, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes){
+    public ModelAndView createUser(@Valid @ModelAttribute("createUser")User user, BindingResult bindingResult, HttpSession httpSession, RedirectAttributes redirectAttributes){
         ModelAndView model = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
@@ -41,14 +42,23 @@ public class RegisterController {
             return model;
         }
         userService.saveUser(user);
+        httpSession.setAttribute("userSession", user);
         redirectAttributes.addFlashAttribute("username",username);
         model.setViewName("redirect:/dashboard");
         return model;
     }
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
-    public ModelAndView getRegisterPage(@ModelAttribute("createUser") User user, ModelAndView modelAndView) {
-        modelAndView.setViewName("register");
+    public ModelAndView getRegisterPage(@ModelAttribute("createUser") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes){
+
+        User userSession = (User) httpSession.getAttribute("userSession");
+
+        if(userSession != null){
+            redirectAttributes.addFlashAttribute("username",userSession.getUsername());
+            modelAndView.setViewName("redirect:/dashboard");
+        } else {
+            modelAndView.setViewName("register");
+        }
         return modelAndView;
     }
 

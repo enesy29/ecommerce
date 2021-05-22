@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "order2")
+@Table(name = "orders")
 public class Order {
 
     //OneToMany
@@ -23,7 +23,9 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "productId")
-    private Product product;
+    private Product product; // List<Products> TODO
+
+    // FIXME private User user;
 
     public Order() {
         super();

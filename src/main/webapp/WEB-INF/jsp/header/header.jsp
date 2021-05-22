@@ -53,7 +53,7 @@
             <a href="<c:url value="/j_spring_security_logout" />">
                 <span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a>
         </c:if>
-        <c:if test="${pageContext.request.userPrincipal.name  == null}">
+        <c:if test="${empty userSession}">
             <a href="<c:url value="/login/" />">
                 <span class="glyphicon glyphicon-log-in"></span>&nbsp; Log In</a>
             <a href="<c:url value="/register" />">

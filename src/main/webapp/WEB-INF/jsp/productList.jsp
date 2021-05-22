@@ -32,13 +32,17 @@
             </thead>
             <c:forEach items="${products}" var="product">
                 <tr>
-                    <td><img src="<c:url value="/resources/images/${product.productId}.png" /> " alt="image"
-                             style="width:100%"/></td>
+                    <c:if test="${empty product.imageURL}">
+                        <td><img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/></td>
+                    </c:if>
+                    <c:if test="${not empty product.imageURL}">
+                    <td><img src="${product.imageURL}" width="200" height="200" alt="image"/></td>
+                    </c:if>
                     <td>${product.productName}</td>
                     <td>${product.category}</td>
                     <td>$${product.price}</td>
                     <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />"
-                    ><span class="glyphicon glyphicon-info-sign"></span></a></td>
+                    >Ürünü İncele<span class="glyphicon glyphicon-info-sign"></span></a></td>
                 </tr>
             </c:forEach>
         </table>

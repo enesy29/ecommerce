@@ -13,10 +13,12 @@
         <h1><font color="black"><b>Sitemize Hoşgeldiniz !</b></font></h1>
         <a href="<c:url value="/product/productList/all" />" class="btn btn-success">
             <span class="glyphicon glyphicon-hand-right"></span>Alışverişe Başla</a>
+        <c:if test="${empty userSession}">
         <a href="<c:url value="register" />" class="btn btn-success">
             <span class="glyphicon glyphicon-hand-right"></span>Kayıt Ol</a>
         <a href="<c:url value="login" />" class="btn btn-success">
             <span class="glyphicon glyphicon-hand-right"></span>Giriş Yap</a>
+        </c:if>
     </div>
 
 </div>
