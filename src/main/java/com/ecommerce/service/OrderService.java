@@ -1,9 +1,11 @@
 package com.ecommerce.service;
 
 import com.ecommerce.model.Order;
+import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.repository.UserRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,6 @@ public class OrderService {
          List<Order> orderList = order.getProduct().getOrderList();
          orderList.add(order);
          userRepository.save(user);
-        //boolean admin = user.isAdmin();
     }
-
 
 }

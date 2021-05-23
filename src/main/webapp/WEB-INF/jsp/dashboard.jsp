@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@include file="header/header.jsp" %>
 <html>
 <head>
@@ -11,6 +13,13 @@
     <section class="jumbotron text-center">
         <div class="container">
             Kayıt olan kullancı ismi <b>${username}</b>
+
+            <c:if test="${not empty userSession}">
+
+            <p>Profili Düzenle</p>
+
+            <br>
+            </c:if>
         </div>
     </section>
 </div>
