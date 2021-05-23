@@ -1,6 +1,5 @@
 package com.ecommerce.service;
 
-import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.Admin;
 import com.ecommerce.repository.AdminRepository;
 import org.springframework.stereotype.Service;

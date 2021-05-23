@@ -1,10 +1,8 @@
 package com.ecommerce.service;
 
-import com.ecommerce.Exception.UserNotFoundException;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.stereotype.Service;
 
 @Service
