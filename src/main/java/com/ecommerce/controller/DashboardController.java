@@ -28,4 +28,12 @@ public class DashboardController {
         userService.updateUser(user,id);
         return "/update";
     }
+
+    @RequestMapping(value = "/logout")
+    public ModelAndView logout(User user,ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes){
+        httpSession.invalidate();
+        modelAndView.setViewName("redirect:/login");
+        return modelAndView;
+    }
+
 }
