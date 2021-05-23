@@ -2,7 +2,6 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="header/header.jsp"%>
 
 <script>
     $(document).ready(
@@ -39,11 +38,18 @@
             </thead>
             <c:forEach items="${products}" var="product">
                 <tr>
-                    <td><img src="${product.imageURL}" alt="image"/></td>
+                    <td>
+                        <c:if test="${not empty product.imageURL}" >
+                            <img src="${product.imageURL}" alt="image" width="200" height="200"/>
+                        </c:if>
+                        <c:if test="${empty product.imageURL}">
+                            <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
+                        </c:if>
+                    </td>
                     <td>${product.productName}</td>
                     <td>${product.category}</td>
                     <td>${product.description}</td>
-                    <td>$${product.price}</td>
+                    <td>${product.price} TL</td>
                     <td><a
                             href="<spring:url value="/product/viewProduct/${product.productId}" />">Ürünü Görüntüle<span
                             class="glyphicon glyphicon-info-sign"></span></a> <a

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class AdminLoginController {
@@ -26,19 +27,34 @@ public class AdminLoginController {
     }
 
     @RequestMapping(value = {"/adminLogin"}, method = RequestMethod.POST)
-    public ModelAndView adminLogin(@ModelAttribute("login") Admin admin, BindingResult bindingResult, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UserNotFoundException {
-        ModelAndView model = new ModelAndView();
+    public ModelAndView adminLogin(@ModelAttribute("login") Admin admin, HttpSession httpSession, RedirectAttributes redirectAttributes,ModelAndView modelAndView) {
         Admin adminLogin = adminService.login(admin);
 
-        String username = adminLogin.getUsername();
-        redirectAttributes.addFlashAttribute("username", username);
-        model.setViewName("redirect:/admin");
-        return model;
+        if (adminLogin == null){
+            modelAndView.addObject("passwordOrUsernameError", "Kullanıcı adı ya da şifreniz hatalıdır.");
+            modelAndView.setViewName("adminLogin");
+            return modelAndView;
+        }
+
+        httpSession.setAttribute("adminSession",adminLogin);
+
+        redirectAttributes.addFlashAttribute("username", adminLogin.getUsername());
+        modelAndView.setViewName("redirect:/admin");
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/adminLogin"}, method = RequestMethod.GET)
-    public ModelAndView showLogin(@ModelAttribute("login") Admin admin, ModelAndView modelAndView) {
-        modelAndView.setViewName("adminLogin");
+    public ModelAndView showLogin(@ModelAttribute("login") Admin admin, ModelAndView modelAndView , HttpSession httpSession, RedirectAttributes redirectAttributes) {
+
+        Admin adminSession = (Admin) httpSession.getAttribute("adminSession") ;
+
+        if (adminSession != null) {
+            redirectAttributes.addFlashAttribute("username", adminSession.getUsername());
+            modelAndView.setViewName("redirect:/admin");
+        } else {
+            modelAndView.setViewName("adminLogin");
+        }
+
         return modelAndView;
     }
 }

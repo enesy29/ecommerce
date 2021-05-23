@@ -36,7 +36,6 @@ public class AdminProductController {
         }
         productService.addProduct(product);
 
-       // MultipartFile productImage = product.getProductImage();
         modelAndView.setViewName("redirect:/admin/productInventory");
         return modelAndView;
     }

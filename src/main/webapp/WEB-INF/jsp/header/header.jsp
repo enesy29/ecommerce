@@ -40,11 +40,7 @@
         <a href="<c:url value="/product/productList/all" />">Products</a>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <a>Hello, ${pageContext.request.userPrincipal.name}</a>
-            <c:if
-                    test="${pageContext.request.userPrincipal.name != 'admin'}">
-                <a href="<c:url value="/customer/cart" />">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Cart</a>
-            </c:if>
+
             <c:if
                     test="${pageContext.request.userPrincipal.name  == 'admin'}">
                 <a href="<c:url value="/admin" />">
@@ -58,6 +54,15 @@
                 <span class="glyphicon glyphicon-log-in"></span>&nbsp; Log In</a>
             <a href="<c:url value="/register" />">
                 <span class="glyphicon glyphicon-pencil"></span>&nbsp; Sign Up</a>
+        </c:if>
+        <c:if test="${not empty userSession}">
+            <a href="<c:url value="/logout/" />">
+                <span class="glyphicon glyphicon-log-in"></span>&nbsp; Logout</a>
+        </c:if>
+        <c:if
+                test="${not empty userSession}">
+            <a href="<c:url value="/customer/cart" />">
+                <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Cart</a>
         </c:if>
     </div>
 </div>

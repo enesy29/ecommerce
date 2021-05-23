@@ -14,16 +14,22 @@
 
     <form:form modelAttribute="login" cssClass="form-login" method="post">
     <h2 class="form-signin-heading text-center">Giriş Yap</h2>
-    <hr/>
-    <div class="form-group" aria-setsize="5">
-
+        <hr/>
+        <c:if test="${not empty msg}">
+            <div class="msg">${msg}</div>
+        </c:if>
+        <div class="form-group" aria-setsize="5">
+            <c:if test="${not empty passwordOrUsernameError}">
+                <div class="alert alert-danger">
+                    <p class="text-center">${passwordOrUsernameError}</p>
+                </div>
+            </c:if>
         <form:input path="username" cssClass="form-control"  placeholder="Kullanıcı Adı" required="required"></form:input>
         <hr>
         <form:input path="password" type="password" cssClass="form-control"  placeholder="Şifre" required="required"></form:input>
         <hr>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button name="submit" class="btn btn-success btn-lg my-2">Giriş Yap</button>
         </form:form>
+        <button name="submit" class="btn btn-success btn-lg my-2">Giriş Yap</button>
     </div>
-
+</div>
 </html>

@@ -32,5 +32,5 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button name="submit" class="btn btn-success btn-lg my-2">Giriş Yap</button>
     </div>
-
+</div>
 </html>

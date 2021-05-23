@@ -11,8 +11,14 @@
 
         <div class="container" ng-app = "cartApp">
             <div class="row">
+
                 <div class="col-md-5">
-                    <img src="${product.imageURL}" alt="image"/>
+                    <c:if test="${not empty product.imageURL}">
+                        <img src="${product.imageURL}" width="200" height="200" alt="image"/>
+                    </c:if>
+                    <c:if test="${empty product.imageURL}">
+                        <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
+                    </c:if>
                 </div>
 
                 <div class="col-md-5">
@@ -22,7 +28,7 @@
                         <strong>Category</strong>: ${product.category}
                     </p>
                     <p>
-                        <strong>Price</strong>: $${product.price}
+                        <strong>Price</strong>: ${product.price} TL
                     </p>
                     <br>
 
@@ -38,20 +44,18 @@
 
                         &nbsp;
 
-                        <!-- If not logged in. -->
-                        <c:if test="${pageContext.request.userPrincipal.name==null}">
-                            <a href="#" class="btn btn-warning btn-large" ng-click="addToCartCallWithoutLoggedIn()">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Order Now</a>
-                        </c:if>
-
-                        <!-- If logged in and is user. -->
-                        <c:if test="${pageContext.request.userPrincipal.name!=null &&
-                        	pageContext.request.userPrincipal.name!='admin'}">
+                        <!-- Kullanıcı girişi yapılmışsa -->
+                        <c:if test="${ userSession != null}">
                             <a href="#" class="btn btn-success btn-large" ng-click="addToCart('${product.productId}')">
                                 <span class="glyphicon glyphicon-hand-right"></span>&nbsp; Order Now</a>
                             &nbsp;
                             <a href="<spring:url value="/customer/cart" />" class="btn btn-info">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; View Cart</a>
+                        </c:if>
+
+                        <c:if test="${userSession == null}">
+                            <a href="/login" class="btn btn-success btn-large">
+                                <span class="glyphicon glyphicon-hand-right"></span>&nbsp; Order Now</a>
                         </c:if>
 
                     </p>

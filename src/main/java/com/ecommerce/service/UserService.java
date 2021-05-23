@@ -31,9 +31,6 @@ public class UserService {
 
         User findByUsername = userRepository.findByUsernameAndPassword(username, password);
 
-       /* if (findByUsername == null){
-            throw new UserNotFoundException();
-        }*/
         return findByUsername;
     }
     public User updateUser(User user,Long id){

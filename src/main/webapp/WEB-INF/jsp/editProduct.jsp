@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@include file="header/header.jsp" %>
+
 
 
 <div class="container-wrapper">
@@ -34,8 +34,8 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="productImage">Upload Picture</label>
-                <form:input id="productImage" path="productImage" type="file" class="form:input-large" />
+                <label for="category">Ürün Resmi</label>
+                <form:input path="imageURL" id="imageURL" class="form-Control"/>
             </div>
 
             <br><br>

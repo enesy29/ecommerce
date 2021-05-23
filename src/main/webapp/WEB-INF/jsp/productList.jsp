@@ -40,7 +40,7 @@
                     </c:if>
                     <td>${product.productName}</td>
                     <td>${product.category}</td>
-                    <td>$${product.price}</td>
+                    <td>${product.price} TL</td>
                     <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />"
                     >Ürünü İncele<span class="glyphicon glyphicon-info-sign"></span></a></td>
                 </tr>

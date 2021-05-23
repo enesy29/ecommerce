@@ -21,9 +21,6 @@ public class AdminService {
 
         Admin findByUsername = adminRepository.findByUsernameAndPassword(username, password);
 
-        if (findByUsername == null){
-            throw new UserNotFoundException();
-        }
         return findByUsername;
     }
 }

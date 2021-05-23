@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-
+//İşlevi Yok
 @Controller
 public class CategoryController {
     @GetMapping(value = {"/category"})
