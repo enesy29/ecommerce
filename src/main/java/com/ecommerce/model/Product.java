@@ -22,20 +22,34 @@ public class Product {
     private String description;
     private double price;
     private String category;
-
+    private int quantity;
     private String imageURL;
-
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String productName, String description, double price, String category) {
+    public Product(Long productId, String productName, String description, double price, String category, int quantity, String imageURL) {
         this.productId = productId;
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.category = category;
+        this.quantity = quantity;
+        this.imageURL = imageURL;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", quantity=" + quantity +
+                ", imageURL='" + imageURL + '\'' +
+                '}';
     }
 
     public Long getProductId() {
@@ -78,23 +92,19 @@ public class Product {
         this.category = category;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getImageURL() {
         return imageURL;
     }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
     }
 }

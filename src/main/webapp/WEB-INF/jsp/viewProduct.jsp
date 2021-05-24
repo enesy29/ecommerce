@@ -9,7 +9,7 @@
             <h2>Ürün Detayı</h2>
         </div>
 
-        <div class="container" ng-app = "cartApp">
+        <div class="container">
             <div class="row">
 
                 <div class="col-md-5">
@@ -32,7 +32,6 @@
                     </p>
                     <br>
 
-                    <p ng-controller="cartCtrl">
                         <a href="<c:url value="/allProducts" />" class="btn btn-default">Back</a>
                         &nbsp;
                         <!-- Kullanıcı girişi yapılmışsa -->
@@ -48,7 +47,6 @@
                                 <span class="glyphicon glyphicon-hand-right"></span>&nbsp; Order Now</a>
                         </c:if>
 
-                    </p>
                 </div>
             </div>
         </div>

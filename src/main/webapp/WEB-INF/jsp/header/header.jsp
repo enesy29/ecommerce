@@ -41,12 +41,6 @@
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <a>Hello, ${pageContext.request.userPrincipal.name}</a>
 
-            <c:if
-                    test="${pageContext.request.userPrincipal.name  == 'admin'}">
-                <a href="<c:url value="/admin" />">
-                    <span class="glyphicon glyphicon-user"></span>&nbsp; Admin</a>
-            </c:if>
-
         </c:if>
         <c:if test="${empty userSession}">
             <a href="<c:url value="/login/" />">

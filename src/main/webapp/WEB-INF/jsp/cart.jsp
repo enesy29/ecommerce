@@ -1,4 +1,8 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="button" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="header/header.jsp"%>
 
 
@@ -14,10 +18,10 @@
             </div>
         </section>
 
-        <section class="container" ng-app="cartApp">
-            <div ng-controller="cartCtrl" ng-init="initCartId('${cart}')">
+        <section class="container">
+            <div>
                 <div>
-                    <a class="btn btn-danger pull-left" onclick="this.clearCart()"><span
+                    <a href="cart/removeAll" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span>&nbsp; Clear Cart</a>
                     <a href="<spring:url value="/order/${cart}"/>"
                        class="btn btn-success pull-right"><span
@@ -25,25 +29,37 @@
                 </div>
 
                 <br/><br/><br/>
-
+                <c:if test="${not empty userSession}">
                 <table class="table table-hover">
                     <tr>
-                        <th>Product</th>
-                        <th>Unit Price</th>
+                        <th>Ürün Resmi</th>
+                        <th>Ürün Adı</th>
+                        <th>Ürünün Fiyatı</th>
+                        <th>Ürün Miktarı</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
-                    <tr ng-repeat="item in cart.cartItems">
-                        <c:forEach items="cart">
-                            <td>${productName}</td>
-                            <td>${productId}</td>
+
+                        <c:forEach items="${cart}" varStatus="stat" var="product">
+                            <tr>
+                                <td>
+                                    <c:if test="${empty product.imageURL}">
+                                        <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
+                                    </c:if>
+                                    <c:if test="${not empty product.imageURL}">
+                                        <img src="${product.imageURL}" width="200" height="200" alt="image"/>
+                                    </c:if>
+                                </td>
+                                <td>${product.productName}</td>
+                                <td>${product.price}</td>
+                                <td></td>
+                                <td>${total}</td>
+                                <td><a href="/cart/removeItem/${stat.index}" class="label label-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp; Remove</a>
+                                <a href="/addToCart/${productId}" class="label label-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp; Update</a></td>
+                            </tr>
                         </c:forEach>
-                        <td>${productName}</td>
-                        <td>${productId}</td>
-                        <td>${cart}</td>
-                        <td><a href="#" class="label label-danger" onclick="this.cartItemRemove(productId)">
-                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Remove</a></td>
-                    </tr>
                     <tr>
                         <th></th>
                         <th></th>
@@ -52,10 +68,10 @@
                         <th></th>
                     </tr>
                 </table>
-
+                </c:if>
                 <br/>
 
-                <a href="<spring:url value="/allProducts" />" class="btn btn-default">Continue Shopping</a>
+                <a href="<spring:url value="/allProducts"/>" class="btn btn-default">Continue Shopping</a>
             </div>
         </section>
 

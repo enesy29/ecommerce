@@ -1,5 +1,6 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.global.GlobalData;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class LoginController {
         } else {
             modelAndView.setViewName("login");
         }
-
+        GlobalData.cart.clear();
         return modelAndView;
     }
 
