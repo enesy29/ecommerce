@@ -13,7 +13,7 @@
                 <div class="page-header">
                     <h2>Cart</h2>
 
-                    <p class="lead">All the selected products in your shopping cart.</p>
+                    <p class="lead">Sepete eklediğiniz ürünler : </p>
                 </div>
             </div>
         </section>
@@ -21,7 +21,7 @@
         <section class="container">
             <div>
                 <div>
-                    <a href="cart/removeAll" class="btn btn-danger pull-left"><span
+                    <a href="${pageContext.request.contextPath}/cart/clearAll" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span>&nbsp; Clear Cart</a>
                     <a href="<spring:url value="/order/${cart}"/>"
                        class="btn btn-success pull-right"><span
@@ -34,7 +34,7 @@
                     <tr>
                         <th>Ürün Resmi</th>
                         <th>Ürün Adı</th>
-                        <th>Ürünün Fiyatı</th>
+                        <th>Ürünün Tanıtımı</th>
                         <th>Ürün Miktarı</th>
                         <th>Price</th>
                         <th>Action</th>
@@ -51,9 +51,9 @@
                                     </c:if>
                                 </td>
                                 <td>${product.productName}</td>
+                                <td>${product.description}</td>
+                                <td>${product.quantity}</td>
                                 <td>${product.price}</td>
-                                <td></td>
-                                <td>${total}</td>
                                 <td><a href="/cart/removeItem/${stat.index}" class="label label-danger">
                                     <span class="glyphicon glyphicon-remove"></span>&nbsp; Remove</a>
                                 <a href="/addToCart/${productId}" class="label label-danger">

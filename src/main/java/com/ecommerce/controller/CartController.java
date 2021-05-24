@@ -8,9 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 
 @RestController
 public class CartController {
@@ -43,9 +40,9 @@ public class CartController {
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }
-    @RequestMapping(value = "/cart/removeAll/",method = RequestMethod.GET)
+    @RequestMapping(value = "/cart/clearAll",method = RequestMethod.GET)
     public ModelAndView clearAll(ModelAndView modelAndView){
-        
+        GlobalData.cart.clear();
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }
