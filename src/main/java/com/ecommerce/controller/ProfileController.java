@@ -1,5 +1,6 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.model.Order;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.dom4j.rule.Mode;
@@ -19,11 +20,6 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/profile"})
-    public ModelAndView dashboard(ModelAndView modelAndView) {
-        modelAndView.setViewName("profile");
-        return modelAndView;
-    }
 
     @RequestMapping(value = {"/editProfile/{id}"} , method = RequestMethod.GET)
     public ModelAndView ShowUpdateUser(@PathVariable("id") Long id , ModelAndView modelAndView , Model model){
@@ -51,6 +47,14 @@ public class ProfileController {
     public ModelAndView logout(User user,ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes){
         httpSession.invalidate();
         modelAndView.setViewName("redirect:/login");
+        return modelAndView;
+    }
+    @RequestMapping("/profile")
+    public ModelAndView listOrder(Order order, ModelAndView modelAndView){
+
+        modelAndView.addObject("order",order);
+        //modelAndView.addObject("totalPrice",order.getTotalPrice());
+        modelAndView.setViewName("profile");
         return modelAndView;
     }
 

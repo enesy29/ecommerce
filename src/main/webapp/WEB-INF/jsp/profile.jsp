@@ -15,8 +15,21 @@
             Kayıt olan kullancı ismi <b>${username}</b>
 
             <c:if test="${not empty userSession}">
+                <c:forEach items="order" var="products">
+                    <h3>
+                        <p>Siparişlerim</p>
+                        <table>
+                            <tr>
+                                <td>Ürün Adı</td>
+                                <td>Toplam Fiyat</td>
+                            </tr>
+                            <tr>
+                                <td>${order.id}</td>
+                            </tr>
 
-            <p>Profili Düzenle</p>
+                        </table>
+                    </h3>
+                </c:forEach>
 
             <br>
             </c:if>
