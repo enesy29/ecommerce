@@ -20,28 +20,22 @@ public class Product {
     @NotEmpty(message = "Ürün Adı boş olamaz !")
     private String productName;
     private String description;
-    private BigDecimal price;
+    private double price;
     private String category;
 
     private String imageURL;
 
-    //ManyToOne
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonIgnore
-    private List<Order> orderList; // FIXME DELETE
 
     public Product() {
         super();
     }
 
-    public Product(Long productId, String productName, String description, BigDecimal price, String category, List<Order> orderList) {
+    public Product(Long productId, String productName, String description, double price, String category) {
         this.productId = productId;
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.category = category;
-        this.orderList = orderList;
     }
 
     public Long getProductId() {
@@ -68,11 +62,11 @@ public class Product {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -83,15 +77,6 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
 
     public String getImageURL() {
         return imageURL;
@@ -110,7 +95,6 @@ public class Product {
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", imageURL='" + imageURL + '\'' +
-                ", orderList=" + orderList +
                 '}';
     }
 }

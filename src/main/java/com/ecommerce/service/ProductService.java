@@ -17,18 +17,13 @@ public class ProductService {
 
     public Product addProduct(Product product) {
 
-        System.out.println("Kaydedilecek product :" + product);
-
         Product savedProduct = productRepository.save(product);
-
-        System.out.println("Database'e yazıldıktan sonraki product : " + savedProduct);
 
         return savedProduct;
     }
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
-        System.out.println("Product silindi " + id);
     }
 
     public Product updateProducts(Product product) {
@@ -50,5 +45,8 @@ public class ProductService {
     public List<Product> getAllProduct() {
         List<Product> getAll = productRepository.findAll();
         return getAll;
+    }
+    public Product getProductByProductId(Long productId){
+        return productRepository.getProductByProductId(productId);
     }
 }

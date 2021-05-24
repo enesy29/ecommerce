@@ -14,14 +14,14 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-public class DashboardController {
+public class ProfileController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/dashboard"})
+    @RequestMapping(value = {"/profile"})
     public ModelAndView dashboard(ModelAndView modelAndView) {
-        modelAndView.setViewName("dashboard");
+        modelAndView.setViewName("profile");
         return modelAndView;
     }
 
@@ -43,7 +43,7 @@ public class DashboardController {
         }
 
         userService.updateUser(user,id);
-        modelAndView.setViewName("redirect:/dashboard");
+        modelAndView.setViewName("redirect:/profile");
         return modelAndView;
     }
 

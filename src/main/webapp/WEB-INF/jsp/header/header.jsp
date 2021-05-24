@@ -37,7 +37,7 @@
     <div class="rightContainer">
         <a href="<c:url value="/" /> ">
             <span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
-        <a href="<c:url value="/product/productList/all" />">Products</a>
+        <a href="<c:url value="/allProducts/" />">Products</a>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <a>Hello, ${pageContext.request.userPrincipal.name}</a>
 
@@ -46,8 +46,7 @@
                 <a href="<c:url value="/admin" />">
                     <span class="glyphicon glyphicon-user"></span>&nbsp; Admin</a>
             </c:if>
-            <a href="<c:url value="/j_spring_security_logout" />">
-                <span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a>
+
         </c:if>
         <c:if test="${empty userSession}">
             <a href="<c:url value="/login/" />">
@@ -61,7 +60,7 @@
         </c:if>
         <c:if
                 test="${not empty userSession}">
-            <a href="<c:url value="/customer/cart" />">
+            <a href="<c:url value="/cart" />">
                 <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Cart</a>
         </c:if>
     </div>

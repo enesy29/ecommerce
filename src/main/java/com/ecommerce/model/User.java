@@ -14,10 +14,6 @@ public class User {
     private String surname;
     private String password;
     private String email;
-    //ManyToOne
-    @OneToOne
-    @JoinColumn(name = "BasketId")
-    private Order order; // List<Orders> FIXME ONE TO MANY
 
     public User() {
 

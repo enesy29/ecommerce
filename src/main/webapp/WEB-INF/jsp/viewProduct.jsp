@@ -32,25 +32,15 @@
                     </p>
                     <br>
 
-                    <c:set var="role" scope="page" value="${param.role}" />
-                    <c:set var="url" scope="page" value="/product/productList/all" />
-                    <c:if test="${role='admin'}">
-                        <c:set var="url" scope="page" value="/admin/productInventory" />
-                    </c:if>
-
                     <p ng-controller="cartCtrl">
-
-                        <a href="<c:url value="${url}" />" class="btn btn-default">Back</a>
-
+                        <a href="<c:url value="/allProducts" />" class="btn btn-default">Back</a>
                         &nbsp;
-
                         <!-- Kullanıcı girişi yapılmışsa -->
                         <c:if test="${ userSession != null}">
-                            <a href="#" class="btn btn-success btn-large" ng-click="addToCart('${product.productId}')">
-                                <span class="glyphicon glyphicon-hand-right"></span>&nbsp; Order Now</a>
-                            &nbsp;
-                            <a href="<spring:url value="/customer/cart" />" class="btn btn-info">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; View Cart</a>
+                    <form action="/addToCart/${productId}" method="post">
+                        <input type="hidden" name="id" value="${product.productId}" />
+                        <input type="submit" value="Add to cart" />
+                    </form>
                         </c:if>
 
                         <c:if test="${userSession == null}">
@@ -62,6 +52,8 @@
                 </div>
             </div>
         </div>
-        <script src="<c:url value="/resources/js/controller.js" /> "></script>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
