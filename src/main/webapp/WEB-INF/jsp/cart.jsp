@@ -23,7 +23,7 @@
                 <div>
                     <a href="${pageContext.request.contextPath}/cart/clearAll" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span>&nbsp; Clear Cart</a>
-                    <a href="<spring:url value="/order/${cart}"/>"
+                    <a href="<spring:url value="/checkout"/>"
                        class="btn btn-success pull-right"><span
                             class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Checkout </a>
                 </div>
