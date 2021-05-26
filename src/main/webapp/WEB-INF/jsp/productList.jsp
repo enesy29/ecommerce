@@ -41,7 +41,7 @@
                     <td>${product.productName}</td>
                     <td>${product.category}</td>
                     <td>${product.price} TL</td>
-                    <td><a href="<spring:url value="/view/${product.productId}" />"
+                    <td><a href="<spring:url value="/view/${product.id}" />"
                     >Ürünü İncele<span class="glyphicon glyphicon-info-sign"></span></a></td>
                 </tr>
             </c:forEach>

@@ -1,6 +1,6 @@
 package com.ecommerce.service;
 
-import com.ecommerce.model.Admin;
+import com.ecommerce.domain.Admin;
 import com.ecommerce.repository.AdminRepository;
 import org.springframework.stereotype.Service;
 

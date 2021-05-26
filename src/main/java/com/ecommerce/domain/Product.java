@@ -1,22 +1,18 @@
-package com.ecommerce.model;
+package com.ecommerce.domain;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
     @NotEmpty(message = "Ürün Adı boş olamaz !")
     private String productName;
     private String description;
@@ -25,39 +21,16 @@ public class Product {
     private int quantity;
     private String imageURL;
 
-    public Product() {
-        super();
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<ProductToCartItem> productToCartItems;
+
+    public Long getId() {
+        return id;
     }
 
-    public Product(Long productId, String productName, String description, double price, String category, int quantity, String imageURL) {
-        this.productId = productId;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.quantity = quantity;
-        this.imageURL = imageURL;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                ", quantity=" + quantity +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -106,5 +79,13 @@ public class Product {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public List<ProductToCartItem> getProductToCartItems() {
+        return productToCartItems;
+    }
+
+    public void setProductToCartItems(List<ProductToCartItem> productToCartItems) {
+        this.productToCartItems = productToCartItems;
     }
 }

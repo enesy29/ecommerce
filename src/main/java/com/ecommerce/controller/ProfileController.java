@@ -1,9 +1,8 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.model.Order;
-import com.ecommerce.model.User;
+import com.ecommerce.domain.Order;
+import com.ecommerce.domain.User;
 import com.ecommerce.service.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

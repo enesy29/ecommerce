@@ -36,8 +36,8 @@
                         &nbsp;
                         <!-- Kullanıcı girişi yapılmışsa -->
                         <c:if test="${ userSession != null}">
-                    <form action="/addToCart/${productId}" method="post">
-                        <input type="hidden" name="id" value="${product.productId}" />
+                    <form action="/addToCart/${product.id}" method="post">
+                        <input type="hidden" name="id" value="${product.id}" />
                         <input type="submit" value="Add to cart" />
                     </form>
                         </c:if>

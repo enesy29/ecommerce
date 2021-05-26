@@ -1,15 +1,12 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.global.GlobalData;
-import com.ecommerce.model.User;
+import com.ecommerce.domain.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -45,7 +42,6 @@ public class LoginController {
         } else {
             modelAndView.setViewName("login");
         }
-        GlobalData.cart.clear();
         return modelAndView;
     }
 

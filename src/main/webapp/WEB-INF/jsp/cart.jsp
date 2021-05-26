@@ -21,7 +21,7 @@
         <section class="container">
             <div>
                 <div>
-                    <a href="${pageContext.request.contextPath}/cart/clearAll" class="btn btn-danger pull-left"><span
+                    <a href="${pageContext.request.contextPath}/cart/removeItem/${cartItem.id}" class="btn btn-danger pull-left"><span
                             class="glyphicon glyphicon-remove-sign"></span>&nbsp; Clear Cart</a>
                     <a href="<spring:url value="/checkout"/>"
                        class="btn btn-success pull-right"><span
@@ -40,34 +40,35 @@
                         <th>Action</th>
                     </tr>
 
-                        <c:forEach items="${cart}" varStatus="stat" var="product">
+                        <c:forEach items="${cartItem}" varStatus="stat">
                             <tr>
                                 <td>
-                                    <c:if test="${empty product.imageURL}">
+                                    <c:if test="${empty cartItem.imageURL}">
                                         <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
                                     </c:if>
-                                    <c:if test="${not empty product.imageURL}">
-                                        <img src="${product.imageURL}" width="200" height="200" alt="image"/>
+                                    <c:if test="${not empty cartItem.imageURL}">
+                                        <img src="${cartItem.imageURL}" width="200" height="200" alt="image"/>
                                     </c:if>
                                 </td>
-                                <td>${product.productName}</td>
-                                <td>${product.description}</td>
-                                <td>${product.quantity}</td>
-                                <td>${product.price}</td>
-                                <td><a href="/cart/removeItem/${stat.index}" class="label label-danger">
+                                <td></td>
+                                <td>${cartItem.subtotal}</td>
+                                <td>${cartItem.product_id}</td>
+                                <td>${cartItem.qty}</td>
+                                <td><a href="/cart/removeItem/${cartItem.id}" class="label label-danger">
                                     <span class="glyphicon glyphicon-remove"></span>&nbsp; Remove</a>
-                                <a href="/addToCart/${productId}" class="label label-danger">
+                                <a href="updateCartItem/${cartItemId}" class="label label-danger">
                                     <span class="glyphicon glyphicon-remove"></span>&nbsp; Update</a></td>
                             </tr>
                         </c:forEach>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Toplam Fiyat</th>
-                        <th>${total}</th>
-                        <th></th>
-                    </tr>
-                </table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Toplam Fiyat</th>
+                            <th>${shoppingCart.grandTotal} TL</th>
+                            <th></th>
+                        </tr>
+                        </table>
+
                 </c:if>
                 <br/>
 

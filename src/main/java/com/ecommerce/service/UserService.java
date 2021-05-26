@@ -1,6 +1,7 @@
 package com.ecommerce.service;
 
-import com.ecommerce.model.User;
+import com.ecommerce.domain.ShoppingCart;
+import com.ecommerce.domain.User;
 import com.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,23 +13,17 @@ public class UserService {
     private UserRepository userRepository;
 
     public User saveUser(User user) {
-
-        System.out.println("Kaydedilecek kullancı :" + user);
-
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        user.setShoppingCart(shoppingCart);
         User savedUser = userRepository.save(user);
-
-        System.out.println("Database'e yazıldıktan sonraki kullanıcı : " + savedUser);
-
         return savedUser;
     }
 
     public User login(User user) {
-
         String username = user.getUsername();
         String password = user.getPassword();
-
         User findByUsername = userRepository.findByUsernameAndPassword(username, password);
-
         return findByUsername;
     }
     public User updateUser(User user,Long id){
@@ -44,7 +39,15 @@ public class UserService {
         User getUser = userRepository.findById(id).get();
         return getUser;
     }
-    public User findUserByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public User findById(Long id){
+        return userRepository.findById(id).get();
+    }
+
+    public User findByEmail (String email) {
+        return userRepository.findByEmail(email);
     }
 }

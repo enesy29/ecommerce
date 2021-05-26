@@ -11,7 +11,7 @@
 
         <form:form action="${pageContext.request.contextPath}/admin/product/editProduct" method="post"
                    modelAttribute="product" enctype="multipart/form-data">
-            <form:hidden path="productId" value="${product.productId}" />
+            <form:hidden path="id" value="${product.id}" />
 
             <div class="form-group">
                 <label for="name">Name</label>

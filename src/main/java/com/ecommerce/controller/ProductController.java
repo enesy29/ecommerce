@@ -1,7 +1,6 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.global.GlobalData;
-import com.ecommerce.model.Product;
+import com.ecommerce.domain.Product;
 import com.ecommerce.service.ProductService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,6 @@ public class ProductController {
     @RequestMapping("/allProducts")
     public ModelAndView getProducts(Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        model.addAttribute("cartCount", GlobalData.cart.size());
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
         modelAndView.setViewName("productList");

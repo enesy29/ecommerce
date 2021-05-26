@@ -1,10 +1,8 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.model.User;
+import com.ecommerce.domain.User;
 import com.ecommerce.service.UserService;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
@@ -34,7 +30,7 @@ public class RegisterController {
             return model;
         }
         String username = user.getUsername();
-        Optional<User> optionalUser = Optional.ofNullable(userService.findUserByUsername(username));
+        Optional<User> optionalUser = Optional.ofNullable(userService.findByUsername(username));
 
         if (optionalUser.isPresent()) {
             model.addObject("alreadyExistsUser", "Kullanıcı adı başka bir kullanıcı tarafından kullanılıyor. Lütfen farklı bir kullanıcı ismi deneyin.");

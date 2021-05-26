@@ -10,12 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class HomeController {
 
-    private final ProductService productService;
-
-    public HomeController(ProductService productService) {
-        this.productService = productService;
-    }
-
     @RequestMapping(value = {"/", "/home"})
     public ModelAndView indexPage() {
         ModelAndView modelAndView = new ModelAndView();

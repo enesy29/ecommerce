@@ -1,10 +1,11 @@
 package com.ecommerce.service;
 
-import com.ecommerce.model.Product;
+import com.ecommerce.domain.Product;
 import com.ecommerce.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class ProductService {
@@ -46,7 +47,8 @@ public class ProductService {
         List<Product> getAll = productRepository.findAll();
         return getAll;
     }
-    public Product getProductByProductId(Long productId){
-        return productRepository.getProductByProductId(productId);
+
+    public Product findOne(Long id) {
+        return productRepository.findById(id).get();
     }
 }

@@ -51,11 +51,11 @@
                     <td>${product.description}</td>
                     <td>${product.price} TL</td>
                     <td><a
-                            href="<spring:url value="/product/viewProduct/${product.productId}" />">Ürünü Görüntüle<span
+                            href="<spring:url value="/product/viewProduct/${product.id}" />">Ürünü Görüntüle<span
                             class="glyphicon glyphicon-info-sign"></span></a> <a
-                            href="<spring:url value="/admin/product/deleteProduct/${product.productId}" />">Ürünü Sil<span
+                            href="<spring:url value="/admin/product/deleteProduct/${product.id}" />">Ürünü Sil<span
                             class="glyphicon glyphicon-remove"></span></a> <a
-                            href="<spring:url value="/admin/product/editProduct/${product.productId}" />">Ürünü Güncelle<span
+                            href="<spring:url value="/admin/product/editProduct/${product.id}" />">Ürünü Güncelle<span
                             class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
             </c:forEach>
