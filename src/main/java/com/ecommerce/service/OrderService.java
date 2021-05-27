@@ -17,7 +17,7 @@ public class OrderService {
     @Autowired
     private CartItemService cartItemService;
 
-    public synchronized Order createOrder(ShoppingCart shoppingCart,String shippingMethod,User user) {
+    public synchronized Order createOrder(ShoppingCart shoppingCart,User user) {
         Order order = new Order();
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);

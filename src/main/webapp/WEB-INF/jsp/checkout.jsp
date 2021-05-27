@@ -56,25 +56,25 @@
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Sepet : </span>
-                    <span class="badge bg-primary rounded-pill">${cart}</span>
+                    <span class="badge bg-primary rounded-pill">${shoppingCart}</span>
                 </h4>
                 <ul class="list-group mb-3">
 
                     <c:if test="${not null}">
-                        <c:forEach var="product" items="${cart}">
+                        <c:forEach var="cartItem" items="${cartItemList}">
                             <li class="list-group-item d-flex justify-content-between lh-sm">
                                 <div>
                                     <h6 class="my-0">Ürünler</h6>
-                                    <small class="text-muted">${product.productName}</small>
+                                    <small class="text-muted">${cartItem.product.productName}</small>
                                 </div>
-                                <span class="text-muted">${product.price}TL</span>
+                                <span class="text-muted">${cartItem.product.price}TL</span>
                             </li>
                         </c:forEach>
                     </c:if>
 
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Toplam Fiyat</span>
-                        <strong>${totalPrice}TL</strong>
+                        <strong>${shoppingCart.grandTotal}TL</strong>
                     </li>
                 </ul>
             </div>
