@@ -12,7 +12,7 @@
             });
         });
 </script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
@@ -51,7 +51,7 @@
                     <td>${product.description}</td>
                     <td>${product.price} TL</td>
                     <td><a
-                            href="<spring:url value="/product/viewProduct/${product.id}" />">Ürünü Görüntüle<span
+                            href="<spring:url value="/view/${product.id}" />">Ürünü Görüntüle<span
                             class="glyphicon glyphicon-info-sign"></span></a> <a
                             href="<spring:url value="/admin/product/deleteProduct/${product.id}" />">Ürünü Sil<span
                             class="glyphicon glyphicon-remove"></span></a> <a
