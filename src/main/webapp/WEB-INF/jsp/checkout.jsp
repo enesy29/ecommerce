@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
-                <form class="needs-validation" novalidate>
+                <form action="/checkout/success" method="post" class="needs-validation" novalidate>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">First name</label>
@@ -170,7 +170,7 @@
                     </div>
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                    <input class="w-100 btn btn-primary btn-lg" type="submit" value="Ödemeyi Tamamla"></input>
                 </form>
             </div>
         </div>

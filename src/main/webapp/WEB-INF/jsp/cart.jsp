@@ -21,8 +21,6 @@
         <section class="container">
             <div>
                 <div>
-                    <a href="${pageContext.request.contextPath}/cart/removeItem/${cartItem.id}" class="btn btn-danger pull-left"><span
-                            class="glyphicon glyphicon-remove-sign"></span>&nbsp; Clear Cart</a>
                     <a href="<spring:url value="/checkout"/>"
                        class="btn btn-success pull-right"><span
                             class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Checkout </a>
@@ -73,7 +71,9 @@
                 </c:if>
                 <br/>
 
-                <a href="<spring:url value="/allProducts"/>" class="btn btn-default">Continue Shopping</a>
+                <a href="<spring:url value="/allProducts"/>" class="btn btn-default"><span
+                        class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Alışverişe devam et </a>
+
             </div>
         </section>
 

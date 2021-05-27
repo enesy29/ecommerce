@@ -40,7 +40,7 @@ public class CheckoutController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/checkout",method = RequestMethod.POST)
+    @RequestMapping(value = "/checkout/success",method = RequestMethod.POST)
     public ModelAndView postCheckout(ModelAndView modelAndView , Model model){
         ShoppingCart shoppingCart = userService.getUser(Long.parseLong("1")).getShoppingCart();
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
