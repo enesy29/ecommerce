@@ -40,20 +40,21 @@
                         <th>Action</th>
                     </tr>
 
-                        <c:forEach items="${cartItem}" varStatus="stat">
+                        <c:forEach items="${cartItemList}" varStatus="stat" var="cartItem">
                             <tr>
                                 <td>
-                                    <c:if test="${empty cartItem.imageURL}">
+                                    <c:if test="${empty cartItem.product.imageURL}">
                                         <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
                                     </c:if>
-                                    <c:if test="${not empty cartItem.imageURL}">
-                                        <img src="${cartItem.imageURL}" width="200" height="200" alt="image"/>
+                                    <c:if test="${not empty cartItem.product.imageURL}">
+                                        <img src="${cartItem.product.imageURL}" width="200" height="200" alt="image"/>
                                     </c:if>
                                 </td>
-                                <td></td>
-                                <td>${cartItem.subtotal}</td>
-                                <td>${cartItem.product_id}</td>
+                                <td>${cartItem.product.productName}</td>
+                                <td>${cartItem.product.description}</td>
                                 <td>${cartItem.qty}</td>
+                                <td>${cartItem.subtotal}</td>
+                                <!--<td>${cartItem.product.price}</td> -->
                                 <td><a href="/cart/removeItem/${cartItem.id}" class="label label-danger">
                                     <span class="glyphicon glyphicon-remove"></span>&nbsp; Remove</a>
                                 <a href="updateCartItem/${cartItemId}" class="label label-danger">
