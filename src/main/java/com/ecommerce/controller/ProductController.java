@@ -18,7 +18,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/allProducts")
+    @RequestMapping(value = {"/","/allProducts"})
     public ModelAndView getProducts(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         List<Product> products = productService.getAllProduct();

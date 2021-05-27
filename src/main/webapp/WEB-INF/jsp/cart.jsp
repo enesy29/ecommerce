@@ -72,7 +72,8 @@
                 <br/>
 
                 <a href="<spring:url value="/allProducts"/>" class="btn btn-default"><span
-                        class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Alışverişe devam et </a>
+                        class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Alışverişe devam et
+                </a>
 
             </div>
         </section>
