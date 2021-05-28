@@ -13,23 +13,25 @@
 <div>
     <section class="jumbotron text-center">
         <div class="container">
-            Kayıt olan kullancı ismi <b>${username}</b>
-
+            Hoşgeldin <b>${username}</b>
+            <p>Siparişlerini aşağıdaki siparişlerim kısmından inceleyebilirsin !</p>
             <c:if test="${not empty userSession}">
-                <c:forEach items="order" var="products">
-                    <h3>
-                        <p>Siparişlerim</p>
+                <h3>Siparişlerim</h3>
+                <c:forEach items="${orderList}" var="order">
                         <table>
                             <tr>
-                                <td>Ürün Adı</td>
+                                <td>Sipariş Tarihi</td>
                                 <td>Toplam Fiyat</td>
+                                <td>Action</td>
                             </tr>
                             <tr>
-                                <td>${order.id}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.orderTotal} TL</td>
+                                <td><a
+                                        href="<spring:url value="/orderDetail/${order.id}" />">Siparişi Görüntüle<span
+                                        class="glyphicon glyphicon-info-sign"></span></a>
                             </tr>
-
                         </table>
-                    </h3>
                 </c:forEach>
 
             <br>

@@ -1,7 +1,8 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.domain.Order;
-import com.ecommerce.domain.User;
+import com.ecommerce.domain.*;
+import com.ecommerce.service.CartItemService;
+import com.ecommerce.service.OrderService;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -12,12 +13,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class ProfileController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private CartItemService cartItemService;
 
 
     @RequestMapping(value = {"/editProfile/{id}"} , method = RequestMethod.GET)
@@ -49,12 +55,28 @@ public class ProfileController {
         return modelAndView;
     }
     @RequestMapping("/profile")
-    public ModelAndView listOrder(Order order, ModelAndView modelAndView){
-
-        modelAndView.addObject("order",order);
-        //modelAndView.addObject("totalPrice",order.getTotalPrice());
+    public ModelAndView listOrder(Order order, ModelAndView modelAndView , Model model , Product product , ProductToCartItem productToCartItem){
+        User user = userService.getUser(Long.parseLong("1"));
+        model.addAttribute("user", user);
+        model.addAttribute("orderList", user.getOrderList());
         modelAndView.setViewName("profile");
         return modelAndView;
+    }
+    @RequestMapping("/orderDetail/{orderId}")
+    public ModelAndView orderDetail(
+            @PathVariable("orderId") Long orderId,
+             ModelAndView modelAndView, Model model
+    ){
+        User user = userService.getUser(Long.parseLong("1"));
+        Order order = orderService.findOne(orderId);
+
+            List<CartItem> cartItemList = cartItemService.findByOrder(order);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("user", user);
+            model.addAttribute("order", order);
+            model.addAttribute("orderList", user.getOrderList());
+            modelAndView.setViewName("orderDetail");
+            return modelAndView;
     }
 
 }
