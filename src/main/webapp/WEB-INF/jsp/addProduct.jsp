@@ -41,8 +41,8 @@
             </div>
 
             <br><br>
-            <input type="submit" value="Submit" class="btn btn-default">
-            <a href="<c:url value="/admin/productInventory/" />" class="btn btn-default">Cancel</a>
+            <input type="submit" value="Submit" class="btn btn-primary">
+            <a href="<c:url value="/admin/productInventory" />" class="btn btn-primary">Cancel</a>
         </form:form>
 
 

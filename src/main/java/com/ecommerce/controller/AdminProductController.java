@@ -1,6 +1,9 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.domain.CartItem;
+import com.ecommerce.domain.Order;
 import com.ecommerce.domain.Product;
+import com.ecommerce.service.OrderService;
 import com.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.nio.file.Path;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -17,13 +21,16 @@ public class AdminProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(value = "/product/addProduct" , method = RequestMethod.GET)
     public ModelAndView showAddProduct(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Product product = new Product();
         model.addAttribute("product",product);
-        modelAndView.setViewName("addProduct");
+        model.addAttribute("pageType","/WEB-INF/jsp/addProduct.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
     @RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
@@ -44,7 +51,8 @@ public class AdminProductController {
         ModelAndView modelAndView = new ModelAndView();
         Product product = productService.listProduct(id);
         model.addAttribute("product",product);
-        modelAndView.setViewName("editProduct");
+        model.addAttribute("pageType","/WEB-INF/jsp/editProduct.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
     @RequestMapping(value = "/product/editProduct",method = RequestMethod.POST)
@@ -64,6 +72,13 @@ public class AdminProductController {
         ModelAndView modelAndView = new ModelAndView();
         productService.deleteProduct(id);
         modelAndView.setViewName("redirect:/admin/productInventory");
+        return modelAndView;
+    }
+
+    @RequestMapping("/allOrders")
+    public ModelAndView allOrders(Model model , ModelAndView modelAndView) {
+        model.addAttribute("pageType","/WEB-INF/jsp/allOrders.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 }
