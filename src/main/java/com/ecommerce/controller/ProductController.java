@@ -23,9 +23,11 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
-        modelAndView.setViewName("productList");
+        model.addAttribute("pageType","/WEB-INF/jsp/productList.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
+
 
     @RequestMapping("/view/{productId}")
     public ModelAndView viewProduct(@PathVariable Long productId, Model model) throws IOException {

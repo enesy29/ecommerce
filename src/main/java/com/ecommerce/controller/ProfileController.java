@@ -59,7 +59,8 @@ public class ProfileController {
         User user = userService.getUser(Long.parseLong("1"));
         model.addAttribute("user", user);
         model.addAttribute("orderList", user.getOrderList());
-        modelAndView.setViewName("profile");
+        model.addAttribute("pageType","/WEB-INF/jsp/profile.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
     @RequestMapping("/orderDetail/{orderId}")
@@ -75,7 +76,8 @@ public class ProfileController {
             model.addAttribute("user", user);
             model.addAttribute("order", order);
             model.addAttribute("orderList", user.getOrderList());
-            modelAndView.setViewName("orderDetail");
+        model.addAttribute("pageType","/WEB-INF/jsp/orderDetail.jsp");
+        modelAndView.setViewName("main");
             return modelAndView;
     }
 

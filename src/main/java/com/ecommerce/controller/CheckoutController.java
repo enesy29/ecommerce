@@ -36,7 +36,8 @@ public class CheckoutController {
         ShoppingCart shoppingCart = user.getShoppingCart();
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", user.getShoppingCart());
-        modelAndView.setViewName("checkout");
+        model.addAttribute("pageType","/WEB-INF/jsp/checkout.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 

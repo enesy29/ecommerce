@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.domain.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,7 @@ public class RegisterController {
     }
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
-    public ModelAndView getRegisterPage(@ModelAttribute("createUser") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes){
+    public ModelAndView getRegisterPage(@ModelAttribute("createUser") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes, Model model){
 
         User userSession = (User) httpSession.getAttribute("userSession");
 
@@ -53,7 +54,8 @@ public class RegisterController {
             redirectAttributes.addFlashAttribute("username",userSession.getUsername());
             modelAndView.setViewName("redirect:/profile");
         } else {
-            modelAndView.setViewName("register");
+            model.addAttribute("pageType","/WEB-INF/jsp/register.jsp");
+            modelAndView.setViewName("main");
         }
         return modelAndView;
     }

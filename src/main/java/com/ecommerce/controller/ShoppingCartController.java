@@ -30,12 +30,6 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    /*@RequestMapping(value = "/cart" , method = RequestMethod.GET)
-    public ModelAndView getCart(ModelAndView modelAndView){
-        modelAndView.setViewName("cart");
-        return modelAndView;
-    }*/
-
     @RequestMapping(value = "/cart" , method = RequestMethod.GET)
     public ModelAndView shoppingCart(Model model, Principal principal, ModelAndView modelAndView) {
         //User user = userService.findByUsername(principal.getName());
@@ -45,7 +39,8 @@ public class ShoppingCartController {
         shoppingCartService.updateShoppingCart(shoppingCart);
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", shoppingCart);
-        modelAndView.setViewName("cart");
+        model.addAttribute("pageType","/WEB-INF/jsp/cart.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 

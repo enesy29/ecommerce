@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.domain.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,13 +35,14 @@ public class LoginController {
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public ModelAndView showLogin(@ModelAttribute("login") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes) {
+    public ModelAndView showLogin(@ModelAttribute("login") User user, ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes , Model model) {
         User userSession = (User) httpSession.getAttribute("userSession");
         if (userSession != null) {
             redirectAttributes.addFlashAttribute("username", userSession.getUsername());
             modelAndView.setViewName("redirect:/profile");
         } else {
-            modelAndView.setViewName("login");
+            model.addAttribute("pageType","/WEB-INF/jsp/login.jsp");
+            modelAndView.setViewName("main");
         }
         return modelAndView;
     }
