@@ -36,7 +36,7 @@
                                     <c:if test="${ userSession != null}">
                                         <form action="/addToCart/${product.id}" method="post">
                                             <input type="hidden" name="id" value="${product.id}" />
-                                            <button class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
+                                            <button id="addCart" class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
                                             <!--<input type="submit" value="Sepete Ekle" class = "icon-basket"/>-->
                                         </form>
                                         <!--   <button class="btn btn-primary" type="button"><i class="icon-basket"></i>Sepete Ekle</button> -->
@@ -53,3 +53,4 @@
             </div>
     </section>
 </main>
+

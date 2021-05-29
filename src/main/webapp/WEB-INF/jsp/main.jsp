@@ -93,5 +93,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="/resources/js/smoothproducts.min.js"></script>
 <script src="/resources/js/theme.js"></script>
+<script src="/resources/js/controller.js"></script>
 </body>
 </html>
