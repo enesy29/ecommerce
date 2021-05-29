@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.domain.Admin;
 import com.ecommerce.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,12 +23,14 @@ public class AdminLoginController {
     }
 
     @RequestMapping(value = {"/adminLogin"}, method = RequestMethod.POST)
-    public ModelAndView adminLogin(@ModelAttribute("login") Admin admin, HttpSession httpSession, RedirectAttributes redirectAttributes,ModelAndView modelAndView) {
+    public ModelAndView adminLogin(@ModelAttribute("login") Admin admin, HttpSession httpSession, RedirectAttributes redirectAttributes,
+                                   Model model,ModelAndView modelAndView) {
         Admin adminLogin = adminService.login(admin);
 
         if (adminLogin == null){
             modelAndView.addObject("passwordOrUsernameError", "Kullanıcı adı ya da şifreniz hatalıdır.");
-            modelAndView.setViewName("adminLogin");
+            model.addAttribute("pageType","/WEB-INF/jsp/adminLogin.jsp");
+            modelAndView.setViewName("main");
             return modelAndView;
         }
 
@@ -39,7 +42,8 @@ public class AdminLoginController {
     }
 
     @RequestMapping(value = {"/adminLogin"}, method = RequestMethod.GET)
-    public ModelAndView showLogin(@ModelAttribute("login") Admin admin, ModelAndView modelAndView , HttpSession httpSession, RedirectAttributes redirectAttributes) {
+    public ModelAndView showLogin(@ModelAttribute("login") Admin admin, ModelAndView modelAndView , Model model,
+                                  HttpSession httpSession, RedirectAttributes redirectAttributes) {
 
         Admin adminSession = (Admin) httpSession.getAttribute("adminSession") ;
 
@@ -47,7 +51,8 @@ public class AdminLoginController {
             redirectAttributes.addFlashAttribute("username", adminSession.getUsername());
             modelAndView.setViewName("redirect:/admin");
         } else {
-            modelAndView.setViewName("adminLogin");
+            model.addAttribute("pageType","/WEB-INF/jsp/adminLogin.jsp");
+            modelAndView.setViewName("main");
         }
 
         return modelAndView;

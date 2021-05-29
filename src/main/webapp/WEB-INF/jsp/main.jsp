@@ -20,15 +20,22 @@
         <div class="container"><a class="navbar-brand logo" href="<c:url value="/" />">E.Y Ticaret Sitesi</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="<c:url value="/" />">Anasayfa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value="/allProducts/" />">Ürünler</a></li>
-                    <c:if test="${empty userSession}">
-                        <li class="nav-item"><a class="nav-link" href="<c:url value="/register" />">Kayıt Ol</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<c:url value="/login/" />">Giriş Yap</a></li>
+                    <c:if test="${empty adminSession}">
+                        <li class="nav-item"><a class="nav-link" href="<c:url value="/" />">Anasayfa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<c:url value="/allProducts/" />">Ürünler</a></li>
+                        <c:if test="${empty userSession}">
+                            <li class="nav-item"><a class="nav-link" href="<c:url value="/register" />">Kayıt Ol</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<c:url value="/login/" />">Giriş Yap</a></li>
+                        </c:if>
+                        <c:if test="${not empty userSession}">
+                            <li class="nav-item"><a class="nav-link" href="<c:url value="/cart" />">Sepet</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<c:url value="/profile/" />">Profil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<c:url value="/logout/" />">Çıkış Yap</a></li>
+                        </c:if>
                     </c:if>
-                    <c:if test="${not empty userSession}">
-                        <li class="nav-item"><a class="nav-link" href="<c:url value="/cart" />">Sepet</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<c:url value="/profile/" />">Profil</a></li>
+                    <c:if test="${not empty adminSession}">
+                        <li class="nav-item"><a class="nav-link" href="<c:url value="/" />">Anasayfa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<c:url value="/admin" />">Admin Panel</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value="/logout/" />">Çıkış Yap</a></li>
                     </c:if>
                 </ul>

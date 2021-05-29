@@ -17,21 +17,23 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public ModelAndView userLogin(@ModelAttribute("login") User user, RedirectAttributes redirectAttributes, HttpSession httpSession, ModelAndView model) {
+    public ModelAndView userLogin(@ModelAttribute("login") User user, RedirectAttributes redirectAttributes,
+                                  Model model,HttpSession httpSession, ModelAndView modelAndView) {
 
         User userLogin = userService.login(user);
 
         if(userLogin == null){
-            model.addObject("passwordOrUsernameError", "Kullanıcı adı ya da şifreniz hatalıdır.");
-            model.setViewName("login");
-            return model;
+            modelAndView.addObject("passwordOrUsernameError", "Kullanıcı adı ya da şifreniz hatalıdır.");
+            model.addAttribute("pageType","/WEB-INF/jsp/login.jsp");
+            modelAndView.setViewName("main");
+            return modelAndView;
         }
 
         httpSession.setAttribute("userSession", userLogin);
 
         redirectAttributes.addFlashAttribute("username", userLogin.getUsername());
-        model.setViewName("redirect:/profile");
-        return model;
+        modelAndView.setViewName("redirect:/profile");
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
@@ -46,5 +48,4 @@ public class LoginController {
         }
         return modelAndView;
     }
-
 }

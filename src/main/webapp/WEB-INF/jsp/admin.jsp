@@ -3,53 +3,25 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="button" uri="http://www.springframework.org/tags/form" %>
 
-<html>
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Admin Panel</title>
-</head>
-<body>
-<div class="container-wrapper">
-    <div class="container product-padding">
-        <div class="page-header">
-            <h2>Admin Sayfası</h2>
+<main class="page">
+    <section class="clean-block features">
+        <div class="container product-padding">
+            <c:if test="${not empty adminSession}">
+                <div class="block-heading">
+                    <h2 class="text-info">Admin Panel</h2>
+                    <p>Hey Admin, ister ürünleri listele ve göster , istersen siparişleri gör !</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>Ürünleri Listele</h4>
+                        <p>Ürünlerini listeleyip , ürünlerini güncelleyebilirsin ! Veya yeni bir ürün ekleyebilirsin !</p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-star icon"></i>
+                        <h4>Siparişleri Göster</h4>
+                        <p>Şuana kadar verilmiş olan siparişleri görüntüleyebilirsin ! Hadi iyisin , para kazanıyorsun :) </p>
+                    </div>
+                </div>
+            </c:if>
         </div>
-        <c:if test="${empty adminSession}">
-            <a href="adminLogin">Admin Login</a>
-        </c:if>
-
-        <c:if test="${not empty adminSession}">
-            <h3>
-                <a href="<c:url value="/admin/productInventory" />" >Ürün Listesi</a>
-            </h3>
-
-            <p>Ürünleri ekle ve güncelle</p>
-
-            <br>
-
-            <h3>
-                <a href="<c:url value="/admin/pendingOrders" />" >Pending Orders</a>
-            </h3>
-
-            <p>View and fulfill all pending orders.</p>
-
-            <br>
-
-            <h3>
-                <a href="<c:url value="/admin/allOrders" />" >All Orders</a>
-            </h3>
-
-            <p>View all orders.</p>
-
-            <br>
-
-        </c:if>
-    </div>
-</div>
-</body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-</html>
-
+    </section>
+</main>

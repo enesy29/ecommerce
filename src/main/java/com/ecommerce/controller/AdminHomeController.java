@@ -17,9 +17,10 @@ public class AdminHomeController {
     private ProductService productService;
 
     @RequestMapping
-    public ModelAndView adminPage() {
+    public ModelAndView adminPage(Model model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin");
+        model.addAttribute("pageType","/WEB-INF/jsp/admin.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 
@@ -28,7 +29,8 @@ public class AdminHomeController {
         ModelAndView modelAndView = new ModelAndView();
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
-        modelAndView.setViewName("productInventory");
+        model.addAttribute("pageType","/WEB-INF/jsp/productInventory.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 }
