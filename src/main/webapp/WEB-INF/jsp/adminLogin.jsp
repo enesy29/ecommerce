@@ -10,7 +10,7 @@
     <title>Admin Giriş Sayfası</title>
 </head>
 
-<div class="container mt-5">
+<div class="container product-padding">
 
     <form:form modelAttribute="login" cssClass="form-login" method="post">
     <h2 class="form-signin-heading text-center">Giriş Yap</h2>

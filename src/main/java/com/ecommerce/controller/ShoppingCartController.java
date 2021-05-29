@@ -61,7 +61,7 @@ public class ShoppingCartController {
         return modelAndView;
     }
 
-    @RequestMapping("/updateCartItem")
+    @RequestMapping("/updateCartItem/{cartItemId}")
     public ModelAndView updateShoppingCart(
             @ModelAttribute("id") Long cartItemId,
             @ModelAttribute("qty") int qty,

@@ -13,6 +13,10 @@ html, body {
   color: #888;
 }
 
+.product-padding {
+  padding-top: 100px;
+}
+
 .sp-wrap {
   display: none;
   line-height: 0;
@@ -172,4 +176,5 @@ html, body {
     bottom: 25px;
   }
 }
+
 

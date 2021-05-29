@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container-wrapper">
-    <div class="container">
+    <div class="container product-padding">
         <div class="page-header">
             <h2>Admin Sayfası</h2>
         </div>

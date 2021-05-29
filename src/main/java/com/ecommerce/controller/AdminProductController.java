@@ -39,8 +39,8 @@ public class AdminProductController {
         modelAndView.setViewName("redirect:/admin/productInventory");
         return modelAndView;
     }
-    @RequestMapping(value = "/product/editProduct/{productId}", method = RequestMethod.GET)
-    public ModelAndView ShowEditProduct(@PathVariable("productId") Long id , Model model){
+    @RequestMapping(value = "/product/editProduct/{id}", method = RequestMethod.GET)
+    public ModelAndView ShowEditProduct(@PathVariable("id") Long id , Model model){
         ModelAndView modelAndView = new ModelAndView();
         Product product = productService.listProduct(id);
         model.addAttribute("product",product);

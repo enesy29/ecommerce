@@ -34,7 +34,8 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         Product product = productService.listProduct(productId);
         model.addAttribute("product", product);
-        modelAndView.setViewName("viewProduct");
+        model.addAttribute("pageType","/WEB-INF/jsp/viewProduct.jsp");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 
