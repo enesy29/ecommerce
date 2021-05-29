@@ -39,7 +39,7 @@
                 <form:input path="imageURL" id="imageURL" class="form-Control"/>
             </div>
             <br>
-            <input type="submit" value="Submit" class="btn btn-primary">
+            <input onclick="editProduct()" type="submit" value="Submit" class="btn btn-primary">
             <a href="<c:url value="/admin/productInventory" />" class="btn btn-primary">Cancel</a>
         </form:form>
 

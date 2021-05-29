@@ -55,8 +55,8 @@
                                              <td>${product.price} TL</td>
                                              <td><a
                                                      href="<spring:url value="/view/${product.id}" />">Ürünü Görüntüle<span
-                                                     class="glyphicon glyphicon-info-sign"></span></a> <a
-                                                     href="<spring:url value="/admin/product/deleteProduct/${product.id}" />">Ürünü Sil<span
+                                                     class="glyphicon glyphicon-info-sign"></span></a>
+                                                 <a href="<spring:url value="/admin/product/deleteProduct/${product.id}" />" onclick="removeProduct()">Ürünü Sil<span
                                                      class="glyphicon glyphicon-remove"></span></a> <a
                                                      href="<spring:url value="/admin/product/editProduct/${product.id}" />">Ürünü Güncelle<span
                                                      class="glyphicon glyphicon-pencil"></span></a></td>

@@ -37,13 +37,11 @@
                                         <form action="/addToCart/${product.id}" method="post">
                                             <input type="hidden" name="id" value="${product.id}" />
                                             <button id="addCart" class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
-                                            <!--<input type="submit" value="Sepete Ekle" class = "icon-basket"/>-->
                                         </form>
-                                        <!--   <button class="btn btn-primary" type="button"><i class="icon-basket"></i>Sepete Ekle</button> -->
                                     </c:if>
                                     <c:if test="${userSession == null}">
                                         <a href="/login">
-                                            <button class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
+                                            <button onclick="loginError()" class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
                                     </c:if>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@
                                     </div>
                                         <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi</label><input type="number" id="number" class="form-control quantity-input" value="${cartItem.qty}"></div>
                                         <div class="col-6 col-md-2 price"><span>${cartItem.subtotal} TL</span></div>
-                                        <button type="submit"><a href="/cart/removeItem/${cartItem.id}">Sil</a></button>
+                                        <button onclick="removeItem()" type="submit"><a href="/cart/removeItem/${cartItem.id}">Sil</a></button>
                                 </div>
                                     </c:forEach>
                                     </c:if>
