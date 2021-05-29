@@ -34,11 +34,12 @@ public class AdminProductController {
         return modelAndView;
     }
     @RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
-    public ModelAndView addProduct(@Valid @ModelAttribute("product")Product product,BindingResult result){
+    public ModelAndView addProduct(@Valid @ModelAttribute("product")Product product,BindingResult result , Model model){
         ModelAndView modelAndView = new ModelAndView();
 
         if (result.hasErrors()){
-            modelAndView.setViewName("addProduct");
+            model.addAttribute("pageType","/WEB-INF/jsp/addProduct.jsp");
+            modelAndView.setViewName("main");
             return modelAndView;
         }
         productService.addProduct(product);
@@ -56,10 +57,11 @@ public class AdminProductController {
         return modelAndView;
     }
     @RequestMapping(value = "/product/editProduct",method = RequestMethod.POST)
-    public ModelAndView editProduct(@Valid @ModelAttribute("product")Product product,BindingResult result){
+    public ModelAndView editProduct(@Valid @ModelAttribute("product")Product product,BindingResult result,Model model){
         ModelAndView modelAndView = new ModelAndView();
         if (result.hasErrors()){
-            modelAndView.setViewName("editProduct");
+            model.addAttribute("pageType","/WEB-INF/jsp/editProduct.jsp");
+            modelAndView.setViewName("main");
             return modelAndView;
         }
 
