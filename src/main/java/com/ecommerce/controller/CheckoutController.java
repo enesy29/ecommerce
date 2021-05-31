@@ -43,11 +43,11 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "/checkout/success",method = RequestMethod.POST)
-    public ModelAndView postCheckout(ModelAndView modelAndView , Model model , HttpSession session , User user){
-        ShoppingCart shoppingCart = userService.currentUser().getShoppingCart();
+    public ModelAndView postCheckout(ModelAndView modelAndView , Model model , HttpSession session){
+        User user = (User) session.getAttribute("userSession");
+        ShoppingCart shoppingCart = user.getShoppingCart();
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
         model.addAttribute("cartItemList", cartItemList);
-        user = userService.currentUser();
         Order order = orderService.createOrder(shoppingCart,user);
         shoppingCartService.clearShoppingCart(shoppingCart);
         LocalDate today = LocalDate.now();

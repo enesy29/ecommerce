@@ -122,7 +122,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <input class="w-100 btn btn-primary btn-lg" type="submit" value="Ödemeyi Tamamla"></input>
+                    <input class="w-100 btn btn-primary btn-lg" type="submit" value="Ödemeyi Tamamla"/>
                 </form>
             </div>
         </div>
