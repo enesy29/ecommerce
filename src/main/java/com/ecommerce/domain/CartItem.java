@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class CartItem {
@@ -19,14 +20,14 @@ public class CartItem {
 
     @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
-    private List<ProductToCartItem> productToCartItemList ;
+    private List<ProductToCartItem> productToCartItemList;
 
     @ManyToOne
-    @JoinColumn(name="shopping_cart_id")
+    @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
 
     @ManyToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public Long getId() {
@@ -87,6 +88,6 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return " Ürün " + product.toString() + " \n Adedi: " + qty + ". ";
+        return "Ürün adı : " + product.getProductName();
     }
 }

@@ -31,6 +31,7 @@
                                     <thead>
                                     <tr>
                                         <th>Ürünler</th>
+                                        <th>Adedi</th>
                                         <th>Toplam Fiyat</th>
                                         <th>Sipariş Tarihi</th>
                                         <th>Alıcı</th>
@@ -39,7 +40,20 @@
                                     <tbody>
                                     <c:forEach items="${allOrdersList}" var="order">
                                         <tr>
-                                            <td>${order.cartItemList.toString()}</td>
+                                            <td>
+
+                                                <c:forEach items="${order.cartItemList}" var="cartItem">
+                                                    ${cartItem}
+                                                    <c:if test="${order.cartItemList.size() > 1}"> </br> </c:if>
+                                                </c:forEach> </td>
+
+
+
+                                            <td>
+                                                <c:forEach items="${order.cartItemList}" var="cartItem"> ${cartItem.qty}
+                                                    <c:if test="${order.cartItemList.size() > 1}"> </br> </c:if>
+                                                </c:forEach>
+                                            </td>
                                             <td>${order.orderTotal} TL</td>
                                             <td>${order.orderDate}</td>
                                             <td>${order.user.email}</td>

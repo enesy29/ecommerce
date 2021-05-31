@@ -15,16 +15,16 @@
                 <div class="row no-gutters">
                     <div class="col-md-12 col-lg-8">
                         <div class="items">
+                            <c:if test="${not empty userSession}">
                             <div class="product">
+                                <c:forEach items="${cartItemList}" varStatus="stat" var="cartItem">
                                 <div class="row justify-content-center align-items-center">
-                                    <c:if test="${not empty userSession}">
-                                    <c:forEach items="${cartItemList}" varStatus="stat" var="cartItem">
                                     <div class="col-md-3">
                                         <c:if test="${empty cartItem.product.imageURL}">
-                                        <div class="product-image"><img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/></div>
+                                            <div class="product-image"><img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/></div>
                                         </c:if>
                                         <c:if test="${not empty cartItem.product.imageURL}">
-                                        <div class="product-image"><img src="${cartItem.product.imageURL}" width="200" height="200" alt="image"/></div>
+                                            <div class="product-image"><img src="${cartItem.product.imageURL}" width="200" height="200" alt="image"/></div>
                                         </c:if>
                                     </div>
                                     <div class="col-md-5 product-info"><a class="product-name" href="<c:url value="/view/${cartItem.product.id}"/>">${cartItem.product.productName}</a>
@@ -32,24 +32,24 @@
                                             <div><span>Ürün Tanıtımı:&nbsp;</span><span class="value">${cartItem.product.description}</span></div>
                                         </div>
                                     </div>
-                                        <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi</label><input type="number" id="number" class="form-control quantity-input" value="${cartItem.qty}"></div>
-                                        <div class="col-6 col-md-2 price"><span>${cartItem.subtotal} TL</span></div>
-                                        <button onclick="removeItem()" type="submit"><a href="/cart/removeItem/${cartItem.id}">Sil</a></button>
+                                    <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi</label><input type="number" id="number" class="form-control quantity-input" value="${cartItem.qty}"></div>
+                                    <div class="col-6 col-md-2 price"><span>${cartItem.subtotal} TL</span></div>
+                                    <div class="col-6 col-md-2 remove"><span class="btn btn-danger"><a href="/cart/removeItem/${cartItem.id}">Sil</a></span></div>
                                 </div>
-                                    </c:forEach>
-                                    </c:if>
-                                </div>
+                                </c:forEach>
                             </div>
+                            </c:if>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4">
-                        <div class="summary">
-                            <h3>Sepet</h3>
-                            <h4><span class="text">Toplam Fiyat</span><span class="price">${shoppingCart.grandTotal} TL</span>
-                            </h4><a href="<spring:url value="/checkout"/>"
-                                    class="w-100 btn btn-primary btn-lg"><span
-                                class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Ödeme Sayfası </a>
-                        </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                    <div class="summary">
+                        <h3>Sepet</h3>
+                        <h4><span class="text">Toplam Fiyat</span><span class="price">${shoppingCart.grandTotal} TL</span>
+                        </h4><a href="<spring:url value="/checkout"/>"
+                                class="w-100 btn btn-primary btn-lg"><span
+                            class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Ödeme Sayfası </a>
                     </div>
                 </div>
             </div>

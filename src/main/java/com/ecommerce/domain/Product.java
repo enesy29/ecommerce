@@ -89,8 +89,4 @@ public class Product {
         this.productToCartItems = productToCartItems;
     }
 
-    @Override
-    public String toString() {
-        return "Adı: " + productName;
-    }
 }

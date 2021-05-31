@@ -43,23 +43,25 @@
                                          <tr>
                                              <td>
                                                  <c:if test="${not empty product.imageURL}" >
-                                                     <img src="${product.imageURL}" alt="image" width="200" height="200"/>
+                                                     <img src="${product.imageURL}" alt="image" width="150" height="150"/>
                                                  </c:if>
                                                  <c:if test="${empty product.imageURL}">
-                                                     <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="200" height="200" alt="image"/>
+                                                     <img src="http://birlikbaski.com/wp-content/uploads/2018/12/resim-yok-png-3-300x300.png" width="150" height="150" alt="image"/>
                                                  </c:if>
                                              </td>
                                              <td>${product.productName}</td>
                                              <td>${product.category}</td>
                                              <td>${product.description}</td>
                                              <td>${product.price} TL</td>
-                                             <td><a
-                                                     href="<spring:url value="/view/${product.id}" />">Ürünü Görüntüle<span
-                                                     class="glyphicon glyphicon-info-sign"></span></a>
-                                                 <a href="<spring:url value="/admin/product/deleteProduct/${product.id}" />" onclick="removeProduct()">Ürünü Sil<span
-                                                     class="glyphicon glyphicon-remove"></span></a> <a
-                                                     href="<spring:url value="/admin/product/editProduct/${product.id}" />">Ürünü Güncelle<span
-                                                     class="glyphicon glyphicon-pencil"></span></a></td>
+                                             <td>
+                                                 <span style="font-size: 9px; text-align: center">
+                                                 <a href="<spring:url value="/view/${product.id}" />">Ürünü Görüntüle <span class="glyphicon glyphicon-info-sign"></span></a>
+                                                 <hr>
+                                                 <a href="<spring:url value="/admin/product/deleteProduct/${product.id}" />" onclick="removeProduct()">Ürünü Sil <span class="glyphicon glyphicon-remove"></span></a>
+                                                 <hr>
+                                                 <a href="<spring:url value="/admin/product/editProduct/${product.id}" />">Ürünü Güncelle <span class="glyphicon glyphicon-pencil"></span></a></td>
+                                                 </span>
+
                                          </tr>
                                      </c:forEach>
                                     </tbody>
