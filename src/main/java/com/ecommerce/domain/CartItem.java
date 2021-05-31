@@ -84,4 +84,9 @@ public class CartItem {
     public void setOrder(Order order) {
         this.order = order;
     }
+
+    @Override
+    public String toString() {
+        return " Ürün " + product.toString() + " \n Adedi: " + qty + ". ";
+    }
 }

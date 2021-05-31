@@ -88,4 +88,9 @@ public class Product {
     public void setProductToCartItems(List<ProductToCartItem> productToCartItems) {
         this.productToCartItems = productToCartItems;
     }
+
+    @Override
+    public String toString() {
+        return "Adı: " + productName;
+    }
 }

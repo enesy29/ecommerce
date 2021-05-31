@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <main>
@@ -36,12 +37,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${allOrdersList}" var="orders">
+                                    <c:forEach items="${allOrdersList}" var="order">
                                         <tr>
-                                            <td>${orders.orderItems.toString()}</td>
-                                            <td>${orders.grandTotal}</td>
-                                            <td>${orders.orderDate}</td>
-                                            <td>${orders.customer.toString()}</td>
+                                            <td>${order.cartItemList.toString()}</td>
+                                            <td>${order.orderTotal} TL</td>
+                                            <td>${order.orderDate}</td>
+                                            <td>${order.user.email}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
