@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class CheckoutController {
     private OrderService orderService;
 
     @RequestMapping("/checkout")
-    public ModelAndView getCheckout(ModelAndView modelAndView , Model model , Long cartId){
-        User user = userService.getUser(Long.parseLong("1"));
+    public ModelAndView getCheckout(ModelAndView modelAndView , Model model , Long cartId , HttpSession session){
+        User user = (User) session.getAttribute("userSession");
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
         ShoppingCart shoppingCart = user.getShoppingCart();
         model.addAttribute("cartItemList", cartItemList);
@@ -42,11 +43,11 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "/checkout/success",method = RequestMethod.POST)
-    public ModelAndView postCheckout(ModelAndView modelAndView , Model model){
-        ShoppingCart shoppingCart = userService.getUser(Long.parseLong("1")).getShoppingCart();
+    public ModelAndView postCheckout(ModelAndView modelAndView , Model model , HttpSession session , User user){
+        ShoppingCart shoppingCart = userService.currentUser().getShoppingCart();
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
         model.addAttribute("cartItemList", cartItemList);
-        User user = userService.getUser(Long.parseLong("1"));
+        user = userService.currentUser();
         Order order = orderService.createOrder(shoppingCart,user);
         shoppingCartService.clearShoppingCart(shoppingCart);
         LocalDate today = LocalDate.now();

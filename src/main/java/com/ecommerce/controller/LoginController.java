@@ -32,7 +32,7 @@ public class LoginController {
         httpSession.setAttribute("userSession", userLogin);
 
         redirectAttributes.addFlashAttribute("username", userLogin.getUsername());
-        modelAndView.setViewName("redirect:/profile");
+        modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
 
@@ -41,7 +41,7 @@ public class LoginController {
         User userSession = (User) httpSession.getAttribute("userSession");
         if (userSession != null) {
             redirectAttributes.addFlashAttribute("username", userSession.getUsername());
-            modelAndView.setViewName("redirect:/profile");
+            modelAndView.setViewName("redirect:/");
         } else {
             model.addAttribute("pageType","/WEB-INF/jsp/login.jsp");
             modelAndView.setViewName("main");

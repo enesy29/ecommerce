@@ -41,7 +41,7 @@ public class RegisterController {
         userService.saveUser(user);
         httpSession.setAttribute("userSession", user);
         redirectAttributes.addFlashAttribute("username",username);
-        model.setViewName("redirect:/profile");
+        model.setViewName("redirect:/");
         return model;
     }
 
@@ -52,7 +52,7 @@ public class RegisterController {
 
         if(userSession != null){
             redirectAttributes.addFlashAttribute("username",userSession.getUsername());
-            modelAndView.setViewName("redirect:/profile");
+            modelAndView.setViewName("redirect:/");
         } else {
             model.addAttribute("pageType","/WEB-INF/jsp/register.jsp");
             modelAndView.setViewName("main");

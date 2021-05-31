@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 
 @Service
 public class UserService {
@@ -16,6 +18,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    HttpSession session;
 
     public User saveUser(User user) {
         User savedUser = userRepository.findByUsername(user.getUsername());
@@ -52,4 +55,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public User currentUser(){
+        User user = (User) session.getAttribute("userSession");
+        return user;
+    }
 }
