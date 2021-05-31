@@ -9,10 +9,13 @@ import com.ecommerce.service.ProductService;
 import com.ecommerce.service.ShoppingCartService;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -31,9 +34,8 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     @RequestMapping(value = "/cart" , method = RequestMethod.GET)
-    public ModelAndView shoppingCart(Model model, Principal principal, ModelAndView modelAndView) {
-        //User user = userService.findByUsername(principal.getName());
-        User user = userService.getUser(Long.parseLong("1"));
+    public ModelAndView shoppingCart(Model model, ModelAndView modelAndView , HttpSession session) {
+        User user = (User) session.getAttribute("userSession");
         ShoppingCart shoppingCart = user.getShoppingCart();
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
         shoppingCartService.updateShoppingCart(shoppingCart);
@@ -47,11 +49,11 @@ public class ShoppingCartController {
     @RequestMapping(value = "/addToCart/{id}" , method = RequestMethod.POST)
     public ModelAndView addItem(
             @ModelAttribute("product") Product product,
-            @ModelAttribute("qty") String qty,
-            Model model, Principal principal,ModelAndView modelAndView,@PathVariable long id
+            @ModelAttribute("qty") String qty,HttpSession session,
+            Model model,
+            @AuthenticationPrincipal Principal principal, ModelAndView modelAndView, @PathVariable long id
     ) {
-        User user = userService.getUser(Long.parseLong("1"));
-        //User user = userService.findByUsername(principal.getName());
+        User user = (User) session.getAttribute("userSession");
         product = productService.findOne(product.getId());
 
         CartItem cartItem = cartItemService.addProductToCartItem(product, user,Integer.parseInt("1"));

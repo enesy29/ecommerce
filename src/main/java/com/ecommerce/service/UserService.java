@@ -3,20 +3,26 @@ package com.ecommerce.service;
 import com.ecommerce.domain.ShoppingCart;
 import com.ecommerce.domain.User;
 import com.ecommerce.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UserService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
 
     public User saveUser(User user) {
+        User savedUser = userRepository.findByUsername(user.getUsername());
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
         user.setShoppingCart(shoppingCart);
-        User savedUser = userRepository.save(user);
+        savedUser = userRepository.save(user);
         return savedUser;
     }
 
@@ -42,12 +48,8 @@ public class UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-
-    public User findById(Long id){
-        return userRepository.findById(id).get();
-    }
-
     public User findByEmail (String email) {
         return userRepository.findByEmail(email);
     }
+
 }
