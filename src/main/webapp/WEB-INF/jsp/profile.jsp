@@ -16,13 +16,17 @@
 
                         <c:if test="${not empty orderList}">
                             <h3>Siparişlerim</h3>
-                            <c:forEach items="${orderList}" var="order">
-                                <table>
+
+                                <table class="table">
+                                    <thead class="thead-dark">
                                     <tr>
-                                        <td>Sipariş Tarihi</td>
-                                        <td>Toplam Fiyat</td>
-                                        <td>Action</td>
+                                        <th scope="col">Sipariş Tarihi</th>
+                                        <th scope="col">Toplam Fiyat</th>
+                                        <th scope="col">Action</th>
                                     </tr>
+                                    </thead>
+                            <c:forEach items="${orderList}" var="order">
+                                    <tbody>
                                     <tr>
                                         <td>${order.orderDate}</td>
                                         <td>${order.orderTotal} TL</td>
@@ -30,8 +34,10 @@
                                                 href="<spring:url value="/orderDetail/${order.id}" />">Siparişi Görüntüle<span
                                                 class="glyphicon glyphicon-info-sign"></span></a>
                                     </tr>
-                                </table>
+                                    </tbody>
                             </c:forEach>
+                                </table>
+
                         </c:if>
 
                     </c:if>

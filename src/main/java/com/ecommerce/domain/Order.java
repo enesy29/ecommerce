@@ -2,6 +2,7 @@ package com.ecommerce.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date orderDate;
+    private LocalDate orderDate;
     private BigDecimal orderTotal;
 
     @OneToMany(mappedBy = "order", cascade=CascadeType.ALL )
@@ -28,11 +29,11 @@ public class Order {
         this.id = id;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 

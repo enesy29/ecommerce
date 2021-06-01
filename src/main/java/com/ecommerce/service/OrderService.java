@@ -5,6 +5,7 @@ import com.ecommerce.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class OrderService {
         }
 
         order.setCartItemList(cartItemList);
-        order.setOrderDate(Calendar.getInstance().getTime());
+        order.setOrderDate(LocalDate.now());
         order.setOrderTotal(shoppingCart.getGrandTotal());
         order.setUser(user);
         order = orderRepository.save(order);
