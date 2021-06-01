@@ -54,7 +54,7 @@
                                              <td>${product.description}</td>
                                              <td>${product.price} TL</td>
                                              <td>
-                                                 <span style="font-size: 9px; text-align: center">
+                                                 <span style="font-size: 12px; text-align: center">
                                                  <a href="<spring:url value="/view/${product.id}" />">Ürünü Görüntüle <span class="glyphicon glyphicon-info-sign"></span></a>
                                                  <hr>
                                                  <a href="<spring:url value="/admin/product/deleteProduct/${product.id}" />" onclick="removeProduct()">Ürünü Sil <span class="glyphicon glyphicon-remove"></span></a>
