@@ -1,3 +1,6 @@
+
+
+
 document.getElementById("addCart").onclick = function() {addCart()};
 document.getElementById("addProduct").onclick = function() {addProduct()};
 document.getElementById("editProduct").onclick = function() {editProduct()};
