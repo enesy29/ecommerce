@@ -30,26 +30,25 @@
                                     <div class="col-md-5 product-info"><a class="product-name" href="<c:url value="/view/${cartItem.product.id}"/>">${cartItem.product.productName}</a>
                                         <div class="product-specs">
                                             <div><span>Ürün Tanıtımı:&nbsp;</span><span class="value">${cartItem.product.description}</span></div>
+                                            <div><a href="/cart/removeItem/${cartItem.id}" class="btn btn-primary">Sil</a></div>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi</label><input type="number" id="number" class="form-control quantity-input" value="${cartItem.qty}"></div>
                                     <div class="col-6 col-md-2 price"><span>${cartItem.subtotal} TL</span></div>
-                                    <div class="col-6 col-md-2 remove"><span class="btn btn-danger"><a href="/cart/removeItem/${cartItem.id}">Sil</a></span></div>
                                 </div>
                                 </c:forEach>
                             </div>
                             </c:if>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-4">
-                    <div class="summary">
+                    <div class="col-md-12 col-lg-4">
+                        <div class="summary">
                         <h3>Sepet</h3>
                         <h4><span class="text">Toplam Fiyat</span><span class="price">${shoppingCart.grandTotal} TL</span>
                         </h4><a href="<spring:url value="/checkout"/>"
-                                class="w-100 btn btn-primary btn-lg"><span
+                                class="btn btn-primary btn-block btn-lg"><span
                             class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Ödeme Sayfası </a>
+                        </div>
                     </div>
                 </div>
             </div>
