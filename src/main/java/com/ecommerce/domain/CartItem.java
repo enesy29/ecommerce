@@ -12,7 +12,7 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int qty;
+    private int qty = 1;
     private BigDecimal subtotal;
 
     @OneToOne

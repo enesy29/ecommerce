@@ -24,9 +24,10 @@ public class ShoppingCartService {
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
         for (CartItem cartItem : cartItemList) {
-            cartItem.getProduct();
-            cartItemService.updateCartItem(cartItem);
-            cartTotal = cartTotal.add(cartItem.getSubtotal());
+            if (cartItem.getProduct().getStock() > 0){
+                cartItemService.updateCartItem(cartItem);
+                cartTotal = cartTotal.add(cartItem.getSubtotal());
+            }
         }
 
         shoppingCart.setGrandTotal(cartTotal);

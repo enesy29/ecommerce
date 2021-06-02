@@ -36,6 +36,11 @@
             </div>
 
             <div class="form-group">
+                <label for="stock">Stok</label> <form:errors path="stock" cssStyle="color: #ff0000;" />
+                <form:input path="stock" id="stock" class="form-Control"/>
+            </div>
+
+            <div class="form-group">
                 <label for="category">Ürün Resmi</label>
                 <form:input path="imageURL" id="imageURL" class="form-Control"/>
             </div>

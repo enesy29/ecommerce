@@ -26,6 +26,7 @@ public class OrderService {
         for(CartItem cartItem : cartItemList) {
             Product product = cartItem.getProduct();
             cartItem.setOrder(order);
+            product.setStock(product.getStock() - cartItem.getQty());
         }
 
         order.setCartItemList(cartItemList);

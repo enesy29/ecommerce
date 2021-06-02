@@ -44,7 +44,10 @@
     </nav>
 </header>
 <body>
+
+
 <jsp:include page="${pageType}"></jsp:include>
+
 
 <footer class="page-footer dark">
     <div class="container">
@@ -86,6 +89,7 @@
     <div class="footer-copyright">
         <p>© 2021 Copyright</p>
     </div>
+
 </footer>
 
 <script src="/resources/js/jquery.min.js"></script>

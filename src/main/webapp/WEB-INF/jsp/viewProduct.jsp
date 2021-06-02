@@ -34,10 +34,16 @@
                                     <p>${product.description}</p>
                                 </div>
                                     <c:if test="${ userSession != null}">
-                                        <form action="/addToCart/${product.id}" method="post">
-                                            <input type="hidden" name="id" value="${product.id}" />
-                                            <button id="addCart" class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
-                                        </form>
+                                        <c:if test="${product.stock > 0}">
+                                            <form action="/addToCart/${product.id}" method="post">
+                                                <input type="hidden" name="id" value="${product.id}" />
+                                                <button id="addCart" class="btn btn-primary" type="submit"><i class="icon-basket"></i>Sepete Ekle</button>
+                                            </form>
+                                        </c:if>
+                                        <c:if test="${product.stock == 0}">
+                                                <input type="hidden" name="id" value="${product.id}" />
+                                                <p>Ürün Stokta Yok !</p>
+                                        </c:if>
                                     </c:if>
                                     <c:if test="${userSession == null}">
                                         <a href="/login">

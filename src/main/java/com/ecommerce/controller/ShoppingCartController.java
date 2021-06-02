@@ -51,14 +51,19 @@ public class ShoppingCartController {
             @ModelAttribute("product") Product product,
             @ModelAttribute("qty") String qty,HttpSession session,
             Model model,
-            @AuthenticationPrincipal Principal principal, ModelAndView modelAndView, @PathVariable long id
+            ModelAndView modelAndView, @PathVariable long id
     ) {
         User user = (User) session.getAttribute("userSession");
         product = productService.findOne(product.getId());
 
+        if (Integer.parseInt("1") > product.getStock()){
+            model.addAttribute("stockError" , true);
+            modelAndView.setViewName("redirect:/view/{id}");
+            return modelAndView;
+        }
+
         CartItem cartItem = cartItemService.addProductToCartItem(product, user,Integer.parseInt("1"));
         model.addAttribute("addProductSuccess", true);
-        System.out.println(" kart item " + cartItem);
         modelAndView.setViewName("redirect:/view/{id}");
         return modelAndView;
     }
