@@ -33,7 +33,7 @@
                                             <div><a href="/cart/removeItem/${cartItem.id}" class="btn btn-primary">Sil</a></div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi</label><input type="number" id="number" class="form-control quantity-input" value="${cartItem.qty}"></div>
+                                    <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="qty">Ürün Adedi : ${cartItem.qty} </label></div>
                                     <div class="col-6 col-md-2 price"><span>${cartItem.subtotal} TL</span></div>
                                 </div>
                                 </c:forEach>
@@ -44,10 +44,14 @@
                     <div class="col-md-12 col-lg-4">
                         <div class="summary">
                         <h3>Sepet</h3>
-                        <h4><span class="text">Toplam Fiyat</span><span class="price">${shoppingCart.grandTotal} TL</span>
-                        </h4><a href="<spring:url value="/checkout"/>"
-                                class="btn btn-primary btn-block btn-lg"><span
-                            class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Ödeme Sayfası </a>
+                        <h4><span class="text">Toplam Fiyat</span><span class="price">${shoppingCart.grandTotal} TL</span></h4>
+                        <form:form modelAttribute="qty">
+                        <span class="form-text text-center text-danger">${stockError}</span>
+                            <a href="<spring:url value="/checkout"/>"
+                               class="btn btn-primary btn-block btn-lg"><span
+                                    class="glyphicon-shopping-cart glyphicon"></span>&nbsp; Ödeme Sayfası </a>
+                        </form:form>
+
                         </div>
                     </div>
                 </div>

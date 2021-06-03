@@ -32,6 +32,7 @@ public class ProductService {
         product.setProductName(updatedProduct.getProductName());
         product.setCategory(updatedProduct.getCategory());
         product.setPrice(updatedProduct.getPrice());
+        product.setStock(updatedProduct.getStock());
         product.setDescription(updatedProduct.getDescription());
 
         System.out.println("Product güncellendi : " + updatedProduct);

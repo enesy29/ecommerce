@@ -9,20 +9,14 @@ import com.ecommerce.service.ProductService;
 import com.ecommerce.service.ShoppingCartService;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.List;
 
 @RestController
 public class ShoppingCartController {
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private CartItemService cartItemService;
@@ -49,20 +43,21 @@ public class ShoppingCartController {
     @RequestMapping(value = "/addToCart/{id}" , method = RequestMethod.POST)
     public ModelAndView addItem(
             @ModelAttribute("product") Product product,
-            @ModelAttribute("qty") String qty,HttpSession session,
+            @ModelAttribute("qty") String qty,
+            HttpSession session,
             Model model,
-            ModelAndView modelAndView, @PathVariable long id
+            ModelAndView modelAndView
     ) {
         User user = (User) session.getAttribute("userSession");
         product = productService.findOne(product.getId());
 
-        if (Integer.parseInt("1") > product.getStock()){
-            model.addAttribute("stockError" , true);
+        if ( Integer.parseInt("1") > product.getStock()){
+            model.addAttribute("stockError" , "Almak istediğiniz ürün sayısı stok sayısından fazla !");
             modelAndView.setViewName("redirect:/view/{id}");
             return modelAndView;
         }
 
-        CartItem cartItem = cartItemService.addProductToCartItem(product, user,Integer.parseInt("1"));
+        CartItem cartItem = cartItemService.addProductToCartItem(product, user, Integer.parseInt("1"));
         model.addAttribute("addProductSuccess", true);
         modelAndView.setViewName("redirect:/view/{id}");
         return modelAndView;

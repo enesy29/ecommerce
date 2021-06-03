@@ -38,6 +38,9 @@ public class CartItemService {
         for (CartItem cartItem : cartItemList) {
             if(product.getId() == cartItem.getProduct().getId()) {
                 cartItem.setQty(cartItem.getQty()+qty);
+                if (cartItem.getProduct().getStock() <= qty){
+                    return null;
+                }
                 cartItem.setSubtotal(new BigDecimal(product.getPrice()).multiply(new BigDecimal(qty)));
                 cartItemRepository.save(cartItem);
                 return cartItem;

@@ -87,13 +87,8 @@ public class AdminProductController {
 
     @RequestMapping("/allOrders")
     public ModelAndView allOrders(Model model , ModelAndView modelAndView) {
-
-        User user = userService.getUser(Long.parseLong("1"));
-        List<Order> orderList = user.getOrderList();
-        List<Order> collect = orderList.stream().filter(Objects::nonNull).filter(order -> !CollectionUtils.isEmpty(order.getCartItemList())).collect(Collectors.toList());
-        // List<List<CartItem>> collect1 = collect.stream().map(Order::getCartItemList).collect(Collectors.toList());
-
-        model.addAttribute("allOrdersList", collect);
+        List<Order> allOrderList = orderService.getAllOrders();
+        model.addAttribute("allOrdersList", allOrderList);
         model.addAttribute("pageType","/WEB-INF/jsp/allOrders.jsp");
         modelAndView.setViewName("main");
         return modelAndView;

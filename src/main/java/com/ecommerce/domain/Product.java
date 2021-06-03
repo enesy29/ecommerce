@@ -22,7 +22,6 @@ public class Product {
     private String imageURL;
     private int stock;
 
-
     @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<ProductToCartItem> productToCartItems;
