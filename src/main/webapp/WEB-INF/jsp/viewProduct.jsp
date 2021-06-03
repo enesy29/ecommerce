@@ -32,6 +32,7 @@
                                 </div>
                                 <div class="summary">
                                     <p>${product.description}</p>
+                                    <p>Stok Sayısı : ${product.stock}</p>
                                 </div>
                                     <c:if test="${ userSession != null}">
                                         <c:if test="${product.stock > 0}">

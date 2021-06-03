@@ -2,14 +2,14 @@ package com.ecommerce.controller;
 
 import com.ecommerce.domain.CartItem;
 import com.ecommerce.domain.Product;
+import com.ecommerce.service.CartItemService;
 import com.ecommerce.service.ProductService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class ProductController {
@@ -32,13 +32,17 @@ public class ProductController {
 
 
     @RequestMapping("/view/{productId}")
-    public ModelAndView viewProduct(@PathVariable Long productId, Model model) throws IOException {
+    public ModelAndView viewProduct(@PathVariable Long productId, Model model){
         ModelAndView modelAndView = new ModelAndView();
         Product product = productService.listProduct(productId);
-        List<Integer> qtyList = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
-        model.addAttribute("qtyList", qtyList);
-        model.addAttribute("qty", 1);
+        /*Map qty = new HashMap();
+        Map<Integer, Integer> quantity = new LinkedHashMap<>();
+        quantity.put(1,1);
+        quantity.put(2,2);
+        qty.put("qtyList", quantity);*/
+        //model.addAttribute("qtyList", qtyList);
+        //model.addAttribute("qty",qty);
 
         model.addAttribute("product", product);
         model.addAttribute("pageType","/WEB-INF/jsp/viewProduct.jsp");

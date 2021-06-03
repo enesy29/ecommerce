@@ -8,12 +8,15 @@ import com.ecommerce.service.CartItemService;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.ShoppingCartService;
 import com.ecommerce.service.UserService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class ShoppingCartController {
@@ -40,10 +43,11 @@ public class ShoppingCartController {
         return modelAndView;
     }
 
+    @JsonFormat
     @RequestMapping(value = "/addToCart/{id}" , method = RequestMethod.POST)
     public ModelAndView addItem(
             @ModelAttribute("product") Product product,
-            @ModelAttribute("qty") String qty,
+            String qty,
             HttpSession session,
             Model model,
             ModelAndView modelAndView
@@ -51,7 +55,7 @@ public class ShoppingCartController {
         User user = (User) session.getAttribute("userSession");
         product = productService.findOne(product.getId());
 
-        if ( Integer.parseInt("1") > product.getStock()){
+       if (Integer.parseInt("1") > product.getStock()){
             model.addAttribute("stockError" , "Almak istediğiniz ürün sayısı stok sayısından fazla !");
             modelAndView.setViewName("redirect:/view/{id}");
             return modelAndView;
