@@ -19,34 +19,9 @@ import java.util.List;
 public class ProfileController {
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private OrderService orderService;
     @Autowired
     private CartItemService cartItemService;
-
-
-    /*@RequestMapping(value = {"/editProfile/{id}"} , method = RequestMethod.GET)
-    public ModelAndView ShowUpdateUser(@PathVariable("id") Long id , ModelAndView modelAndView , Model model){
-        User user = userService.getUser(id);
-        userService.updateUser(user,id);
-        model.addAttribute("user",user);
-        modelAndView.setViewName("editProfile");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = {"/editProfile"} , method = RequestMethod.POST)
-    public ModelAndView updateUser(@Valid @ModelAttribute("user") User user, Long id , ModelAndView modelAndView, BindingResult bindingResult){
-
-        if (bindingResult.hasErrors()){
-            modelAndView.setViewName("editProfile");
-            return modelAndView;
-        }
-
-        userService.updateUser(user,id);
-        modelAndView.setViewName("redirect:/profile");
-        return modelAndView;
-    }*/
 
     @RequestMapping(value = "/logout")
     public ModelAndView logout(User user,ModelAndView modelAndView, HttpSession httpSession, RedirectAttributes redirectAttributes){
