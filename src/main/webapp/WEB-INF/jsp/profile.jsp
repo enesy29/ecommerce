@@ -11,7 +11,7 @@
             <section class="jumbotron text-center">
                 <div class="container">
                     </b>
-                    <p>Siparişlerini aşağıdaki siparişlerim kısmından inceleyebilirsin !</p>
+                    <p>${user.name} ${user.surname} Siparişlerini aşağıdaki siparişlerim kısmından inceleyebilirsin !</p>
                     <c:if test="${not empty userSession}">
 
                         <c:if test="${not empty orderList}">
