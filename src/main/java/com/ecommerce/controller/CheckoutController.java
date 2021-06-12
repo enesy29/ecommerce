@@ -22,8 +22,6 @@ import java.util.List;
 @RestController
 public class CheckoutController {
     @Autowired
-    private UserService userService;
-    @Autowired
     private CartItemService cartItemService;
     @Autowired
     private ShoppingCartService shoppingCartService;

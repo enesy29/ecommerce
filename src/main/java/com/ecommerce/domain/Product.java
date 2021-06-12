@@ -14,11 +14,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "Ürün Adı boş olamaz !")
+    @Column(length = 9999999)
     private String productName;
+    @Column(length = 9999999)
     private String description;
     private double price;
     private String category;
     private int quantity;
+    @Column(length = 9999999)
     private String imageURL;
     private int stock;
 

@@ -2,8 +2,6 @@ package com.ecommerce.service;
 
 import com.ecommerce.domain.*;
 import com.ecommerce.repository.OrderRepository;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

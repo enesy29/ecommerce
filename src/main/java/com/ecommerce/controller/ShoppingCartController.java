@@ -7,14 +7,12 @@ import com.ecommerce.domain.User;
 import com.ecommerce.service.CartItemService;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.ShoppingCartService;
-import com.ecommerce.service.UserService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
