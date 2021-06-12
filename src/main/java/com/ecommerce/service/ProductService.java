@@ -34,13 +34,10 @@ public class ProductService {
         product.setPrice(updatedProduct.getPrice());
         product.setStock(updatedProduct.getStock());
         product.setDescription(updatedProduct.getDescription());
-
-        System.out.println("Product güncellendi : " + updatedProduct);
         return  updatedProduct;
     }
     public Product listProduct(Long id) {
         Product listedProduct = productRepository.findById(id).get();;
-        System.out.println("listed" + listedProduct);
         return listedProduct;
     }
 

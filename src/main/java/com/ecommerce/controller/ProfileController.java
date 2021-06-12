@@ -32,8 +32,9 @@ public class ProfileController {
     @RequestMapping("/profile")
     public ModelAndView listOrder(ModelAndView modelAndView , Model model , HttpSession session){
         User user = (User) session.getAttribute("userSession");
+        List<Order> orderList = orderService.getOrdersByUser(user.getId());
         model.addAttribute("user", user);
-        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", orderList);
         model.addAttribute("pageType","/WEB-INF/jsp/profile.jsp");
         modelAndView.setViewName("main");
         return modelAndView;
